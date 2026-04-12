@@ -94,6 +94,9 @@ class RewardTracker:
         stats = tracker.get_and_reset_stats()
     """
 
+    # TRL's GRPOTrainer reads reward_func.__name__ for logging
+    __name__ = "dispatch_reward"
+
     def __init__(self):
         self._per_dataset: dict[str, list[float]] = defaultdict(list)
         self._per_category: dict[str, list[float]] = defaultdict(list)
