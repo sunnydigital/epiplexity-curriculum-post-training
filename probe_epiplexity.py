@@ -360,7 +360,7 @@ def main() -> None:
     dtype = torch.bfloat16 if device.type == "cuda" else torch.float32
     base_model = AutoModelForCausalLM.from_pretrained(
         args.probe_model,
-        torch_dtype=dtype,
+        dtype=dtype,
     )
     base_model.to(device)
 

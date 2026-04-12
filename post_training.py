@@ -95,7 +95,7 @@ def build_model_and_tokenizer(model_name: str, use_lora: bool, lora_r: int):
 
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
-        torch_dtype=torch.bfloat16,
+        dtype=torch.bfloat16,
         device_map="auto",
     )
 

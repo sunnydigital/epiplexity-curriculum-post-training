@@ -63,9 +63,11 @@ def format_humaneval(example: dict) -> dict:
 
 
 def format_mbpp(example: dict) -> dict:
+    # "sanitized" config uses "prompt" field; "full" uses "text"
+    task_description = example.get("text") or example.get("prompt", "")
     prompt = (
         "Write a Python function to solve the following problem:\n\n"
-        f"{example['text']}\n\n"
+        f"{task_description}\n\n"
         "Your code:"
     )
     return {
