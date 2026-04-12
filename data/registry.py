@@ -55,8 +55,8 @@ DATASET_REGISTRY: dict[str, dict] = {
         "category": "math",
     },
     "math": {
-        "hf_path": "lighteval/MATH",
-        "hf_config": "all",
+        "hf_path": "EleutherAI/hendrycks_math",
+        "hf_config": "algebra",
         "split": "train",
         "category": "math",
     },

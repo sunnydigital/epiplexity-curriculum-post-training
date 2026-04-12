@@ -1,6 +1,6 @@
 #!/bin/bash -l
 #SBATCH --job-name=probe-epiplexity
-#SBATCH --time=02:00:00
+#SBATCH --time=04:00:00
 #SBATCH --partition=a100_short
 #SBATCH --gres=gpu:a100:1
 #SBATCH --mem=64G
@@ -19,12 +19,17 @@ export HF_DATASETS_CACHE=/gpfs/scratch/gs4342/hf_cache/datasets
 mkdir -p $HF_HOME $TRANSFORMERS_CACHE $HF_DATASETS_CACHE
 
 # ── Probe ─────────────────────────────────────────────────────────────────────
-# Run probe first, then training can be submitted reading the output scores
+# Estimates epiplexity (arXiv:2601.03220) by fine-tuning the probe on each
+# dataset and computing K_auc (prequential model description length).
+# This *trains* per dataset (not just inference), so takes longer than perplexity.
 python probe_epiplexity.py \
     --probe-model Qwen/Qwen2.5-0.5B-Instruct \
     --output data/epiplexity_scores.json \
     --max-samples 500 \
-    --batch-size 8 \
-    --max-length 1024
+    --batch-size 4 \
+    --max-length 512 \
+    --train-steps 200 \
+    --lr 5e-5 \
+    --log-interval 10
 
 echo "Probe complete. Scores written to data/epiplexity_scores.json"
