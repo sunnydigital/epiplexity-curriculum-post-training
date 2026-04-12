@@ -27,7 +27,7 @@ weight_decay: 0.01
 
 # Checkpointing & logging
 logging_steps: 5
-save_steps: 100
+save_steps: 500               # save only at end — avoids ~20min GPFS stalls per checkpoint
 save_total_limit: 3
 
 # GRPO KL / reward

@@ -1,16 +1,22 @@
 # Dataset configuration
 # floor_weight: minimum sampling probability to prevent dataset starvation
-# Useful when Pythia-70M / Qwen2.5-0.5B probe may under-score code datasets
 
-floor_weight: 0.05
-temperature: 1.0            # softmax temperature for score normalization
-max_samples_per_dataset: null  # set to integer (e.g. 1000) for smoke tests
+floor_weight: 0.02
+max_samples_per_dataset: null  # set to integer (e.g. 2000) for smoke tests
+
+# Curriculum scheduling defaults (overridden by CLI --curriculum, --temp-start, etc.)
+curriculum:
+  strategy: "uniform"          # uniform | high_first | low_first | high_constant | low_constant | anneal_to_high | single
+  temp_start: 0.1              # starting temperature for annealing strategies
+  temp_end: 5.0                # ending temperature for annealing strategies
+  uniform_mix: 0.1             # fraction of uniform distribution mixed in (starvation prevention)
+  weight_update_interval: 50   # recompute weights every N steps
 
 # Per-dataset floor overrides (optional — null means use global floor_weight)
 per_dataset_floor:
   gsm8k: null
   math: null
-  humaneval: 0.08            # slight floor boost: code may be under-scored by probe
+  humaneval: 0.08              # slight floor boost: code may be under-scored by probe
   mbpp: 0.08
   mmlu: null
   arc: null
