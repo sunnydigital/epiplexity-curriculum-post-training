@@ -1,28 +1,22 @@
-#!/bin/bash
+#!/bin/bash -l
 #SBATCH --job-name=probe-epiplexity
-#SBATCH --partition=gpu
-#SBATCH --gres=gpu:1
-#SBATCH --cpus-per-task=4
-#SBATCH --mem=16G
 #SBATCH --time=02:00:00
-#SBATCH --output=%x_%j.out
-#SBATCH --error=%x_%j.err
-#SBATCH --mail-type=BEGIN,END,FAIL
-#SBATCH --mail-user=gs4342@nyu.edu
+#SBATCH --partition=a100_short
+#SBATCH --gres=gpu:a100:1
+#SBATCH --mem=64G
+#SBATCH --cpus-per-task=8
+#SBATCH --output=/gpfs/scratch/gs4342/logs/probe_epiplexity_%j.out
+#SBATCH --error=/gpfs/scratch/gs4342/logs/probe_epiplexity_%j.err
 
-# ── Environment ──────────────────────────────────────────────────────────────
-module purge
-source /gpfs/scratch/gs4342/miniconda3/bin/activate
+source ~/.bashrc
 conda activate grpo-train
+cd /gpfs/scratch/gs4342/epiplexity-curriculum-post-training
 
-export HF_HOME=$SCRATCH/hf_cache
-export TRANSFORMERS_CACHE=$SCRATCH/hf_cache/transformers
-export HF_DATASETS_CACHE=$SCRATCH/hf_cache/datasets
-
+# Point HuggingFace cache to scratch to avoid home quota
+export HF_HOME=/gpfs/scratch/gs4342/hf_cache
+export TRANSFORMERS_CACHE=/gpfs/scratch/gs4342/hf_cache/transformers
+export HF_DATASETS_CACHE=/gpfs/scratch/gs4342/hf_cache/datasets
 mkdir -p $HF_HOME $TRANSFORMERS_CACHE $HF_DATASETS_CACHE
-
-# ── Working directory ─────────────────────────────────────────────────────────
-cd $HOME/epiplexity-curriculum-post-training
 
 # ── Probe ─────────────────────────────────────────────────────────────────────
 # Run probe first, then training can be submitted reading the output scores

@@ -1,29 +1,22 @@
-#!/bin/bash
+#!/bin/bash -l
 #SBATCH --job-name=grpo-train
-#SBATCH --partition=gpu
-#SBATCH --gres=gpu:a100:1
-#SBATCH --cpus-per-task=8
-#SBATCH --mem=40G
 #SBATCH --time=24:00:00
-#SBATCH --output=%x_%j.out
-#SBATCH --error=%x_%j.err
-#SBATCH --mail-type=BEGIN,END,FAIL
-#SBATCH --mail-user=gs4342@nyu.edu
+#SBATCH --partition=a100_short
+#SBATCH --gres=gpu:a100:1
+#SBATCH --mem=180G
+#SBATCH --cpus-per-task=16
+#SBATCH --output=/gpfs/scratch/gs4342/logs/grpo_train_%j.out
+#SBATCH --error=/gpfs/scratch/gs4342/logs/grpo_train_%j.err
 
-# ── Environment ──────────────────────────────────────────────────────────────
-module purge
-source /gpfs/scratch/gs4342/miniconda3/bin/activate
+source ~/.bashrc
 conda activate grpo-train
+cd /gpfs/scratch/gs4342/epiplexity-curriculum-post-training
 
-# Point HuggingFace cache to scratch to avoid home quota (~50GB quota on BigPurple)
-export HF_HOME=$SCRATCH/hf_cache
-export TRANSFORMERS_CACHE=$SCRATCH/hf_cache/transformers
-export HF_DATASETS_CACHE=$SCRATCH/hf_cache/datasets
-
+# Point HuggingFace cache to scratch to avoid home quota
+export HF_HOME=/gpfs/scratch/gs4342/hf_cache
+export TRANSFORMERS_CACHE=/gpfs/scratch/gs4342/hf_cache/transformers
+export HF_DATASETS_CACHE=/gpfs/scratch/gs4342/hf_cache/datasets
 mkdir -p $HF_HOME $TRANSFORMERS_CACHE $HF_DATASETS_CACHE
-
-# ── Working directory ─────────────────────────────────────────────────────────
-cd $HOME/epiplexity-curriculum-post-training
 
 # ── Training ──────────────────────────────────────────────────────────────────
 python post_training.py \
@@ -31,6 +24,6 @@ python post_training.py \
     --scores-path data/epiplexity_scores.json \
     --config configs/training_config.yaml \
     --datasets-config configs/datasets_config.yaml \
-    --output-dir $SCRATCH/grpo-output
+    --output-dir /gpfs/scratch/gs4342/grpo-output
 
 echo "Training complete."
