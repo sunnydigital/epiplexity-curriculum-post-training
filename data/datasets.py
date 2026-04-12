@@ -12,7 +12,16 @@ from __future__ import annotations
 import re
 from typing import Callable
 
-from datasets import Dataset, concatenate_datasets, load_dataset
+from datasets import Dataset, Features, Value, concatenate_datasets, load_dataset
+
+
+# Canonical schema: all columns are plain strings after formatting
+_FORMATTED_FEATURES = Features({
+    "prompt": Value("string"),
+    "answer": Value("string"),
+    "dataset": Value("string"),
+    "category": Value("string"),
+})
 
 
 # ---------------------------------------------------------------------------
@@ -204,6 +213,10 @@ def load_all_datasets(
             remove_columns=raw.column_names,
             desc=f"Formatting {name}",
         )
+
+        # Cast to canonical schema — prevents ClassLabel / Value mismatches
+        # when concatenating datasets (e.g. MMLU's answer is ClassLabel)
+        formatted = formatted.cast(_FORMATTED_FEATURES)
 
         if max_samples_per_dataset is not None:
             formatted = formatted.select(range(min(max_samples_per_dataset, len(formatted))))
