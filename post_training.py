@@ -120,17 +120,15 @@ def build_grpo_config(training_cfg: dict, output_dir: str) -> GRPOConfig:
     # Override output_dir from CLI arg
     training_cfg = {**training_cfg, "output_dir": output_dir}
 
-    # Map YAML keys to GRPOConfig fields (snake_case matches)
-    # Remove any keys not accepted by GRPOConfig to avoid errors
-    grpo_fields = {
-        "output_dir", "num_train_epochs", "per_device_train_batch_size",
-        "gradient_accumulation_steps", "num_generations", "max_prompt_length",
-        "max_completion_length", "learning_rate", "lr_scheduler_type",
-        "warmup_ratio", "weight_decay", "logging_steps", "save_steps",
-        "save_total_limit", "beta", "bf16", "gradient_checkpointing",
-        "dataloader_num_workers", "logging_dir",
-    }
-    filtered = {k: v for k, v in training_cfg.items() if k in grpo_fields}
+    # Dynamically filter to only keys that GRPOConfig actually accepts,
+    # avoiding breakage across TRL versions that rename/remove params
+    import inspect
+    valid_params = set(inspect.signature(GRPOConfig.__init__).parameters.keys())
+    valid_params.discard("self")
+    filtered = {k: v for k, v in training_cfg.items() if k in valid_params}
+    skipped = set(training_cfg) - set(filtered)
+    if skipped:
+        print(f"Note: skipped config keys not in GRPOConfig: {skipped}")
     return GRPOConfig(**filtered)
 
 
