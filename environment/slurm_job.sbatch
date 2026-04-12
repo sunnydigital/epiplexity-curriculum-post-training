@@ -1,6 +1,6 @@
 #!/bin/bash -l
 #SBATCH --job-name=grpo-train
-#SBATCH --time=24:00:00
+#SBATCH --time=04:00:00
 #SBATCH --partition=a100_short
 #SBATCH --gres=gpu:a100:1
 #SBATCH --mem=180G
@@ -24,6 +24,7 @@ python post_training.py \
     --scores-path data/epiplexity_scores.json \
     --config configs/training_config.yaml \
     --datasets-config configs/datasets_config.yaml \
-    --output-dir /gpfs/scratch/gs4342/grpo-output
+    --output-dir /gpfs/scratch/gs4342/grpo-output \
+    --max-samples 2000
 
 echo "Training complete."

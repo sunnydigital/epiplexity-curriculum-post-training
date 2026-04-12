@@ -9,23 +9,24 @@ output_dir: "./outputs/grpo"
 logging_dir: "./outputs/grpo/logs"
 
 # Training loop
-num_train_epochs: 3
+num_train_epochs: 1
 per_device_train_batch_size: 4
 gradient_accumulation_steps: 4
+max_steps: 500               # smoke-test cap — remove for full training
 
 # GRPO-specific
 num_generations: 8           # rollout samples per prompt (reduce to 4 if OOM)
 max_prompt_length: 512
-max_completion_length: 512
+max_completion_length: 256
 
 # Optimizer
-learning_rate: 5.0e-7
+learning_rate: 5.0e-6
 lr_scheduler_type: "cosine"
-warmup_ratio: 0.05
+warmup_ratio: 0.03
 weight_decay: 0.01
 
 # Checkpointing & logging
-logging_steps: 10
+logging_steps: 5
 save_steps: 100
 save_total_limit: 3
 
