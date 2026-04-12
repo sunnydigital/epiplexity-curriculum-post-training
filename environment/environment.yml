@@ -8,9 +8,9 @@ channels:
 dependencies:
   - python=3.11
   - pip
-  # PyTorch 2.4+ has native NumPy 2 support (no version conflict)
+  # PyTorch 2.6+ required by TRL for FSDPModule (torch.distributed.fsdp)
   # Verify Big Purple CUDA driver version with: nvidia-smi
-  - pytorch::pytorch>=2.4
+  - pytorch::pytorch>=2.6
   - pytorch::torchvision
   - pytorch::torchaudio
   - pytorch::pytorch-cuda=12.1
