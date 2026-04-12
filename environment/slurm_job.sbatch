@@ -12,8 +12,7 @@
 
 # ── Environment ──────────────────────────────────────────────────────────────
 module purge
-module load anaconda3/2024.02
-
+source /gpfs/scratch/gs4342/miniconda3/bin/activate
 conda activate grpo-train
 
 # Point HuggingFace cache to scratch to avoid home quota (~50GB quota on BigPurple)

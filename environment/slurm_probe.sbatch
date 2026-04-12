@@ -12,8 +12,7 @@
 
 # ── Environment ──────────────────────────────────────────────────────────────
 module purge
-module load anaconda3/2024.02
-
+source /gpfs/scratch/gs4342/miniconda3/bin/activate
 conda activate grpo-train
 
 export HF_HOME=$SCRATCH/hf_cache
