@@ -1,0 +1,10 @@
+[project]
+name = "epiplexity-curriculum-post-training"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "datasets>=4.8.4",
+    "transformers>=5.5.3",
+]
