@@ -8,12 +8,12 @@ channels:
 dependencies:
   - python=3.11
   - pip
-  # PyTorch with CUDA 12.1 (verify Big Purple CUDA version with: nvidia-smi)
-  - pytorch::pytorch=2.2
+  # PyTorch 2.4+ has native NumPy 2 support (no version conflict)
+  # Verify Big Purple CUDA driver version with: nvidia-smi
+  - pytorch::pytorch>=2.4
   - pytorch::torchvision
   - pytorch::torchaudio
   - pytorch::pytorch-cuda=12.1
-  - numpy<2
   - pip:
     - transformers>=4.40
     - datasets>=2.18
