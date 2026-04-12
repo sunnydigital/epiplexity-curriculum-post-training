@@ -1,0 +1,18 @@
+# Dataset configuration
+# floor_weight: minimum sampling probability to prevent dataset starvation
+# Useful when Pythia-70M / Qwen2.5-0.5B probe may under-score code datasets
+
+floor_weight: 0.05
+temperature: 1.0            # softmax temperature for score normalization
+max_samples_per_dataset: null  # set to integer (e.g. 1000) for smoke tests
+
+# Per-dataset floor overrides (optional — null means use global floor_weight)
+per_dataset_floor:
+  gsm8k: null
+  math: null
+  humaneval: 0.08            # slight floor boost: code may be under-scored by probe
+  mbpp: 0.08
+  mmlu: null
+  arc: null
+  triviaqa: null
+  boolq: null

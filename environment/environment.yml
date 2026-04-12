@@ -1,0 +1,24 @@
+name: grpo-train
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.11
+  - pip
+  # PyTorch with CUDA 12.1 (verify Big Purple CUDA version with: nvidia-smi)
+  - pytorch::pytorch=2.2
+  - pytorch::torchvision
+  - pytorch::torchaudio
+  - pytorch::pytorch-cuda=12.1
+  - pip:
+    - transformers>=4.40
+    - datasets>=2.18
+    - trl>=0.9
+    - accelerate>=0.29
+    - peft>=0.10
+    - sentencepiece>=0.1.99
+    - evaluate>=0.4
+    - PyYAML>=6.0

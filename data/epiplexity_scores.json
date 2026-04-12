@@ -1,0 +1,11 @@
+{
+  "_comment": "Placeholder epiplexity scores — replace with upstream pipeline output. Higher score = more epiplexity = higher sampling weight.",
+  "gsm8k": 1.0,
+  "math": 1.0,
+  "humaneval": 1.0,
+  "mbpp": 1.0,
+  "mmlu": 1.0,
+  "arc": 1.0,
+  "triviaqa": 1.0,
+  "boolq": 1.0
+}
