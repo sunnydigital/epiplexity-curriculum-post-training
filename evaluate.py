@@ -310,15 +310,17 @@ def main() -> None:
         print(f"  Mean reward: {mean_reward:.4f}")
         print(f"  Time: {elapsed:.1f}s")
 
-    # Summary table
-    print("\n" + "=" * 60)
+    # Summary table — shows accuracy AND mean_reward (crucial for code category)
+    print("\n" + "=" * 70)
     print("EVALUATION SUMMARY")
-    print("=" * 60)
+    print("=" * 70)
     print(f"{'Dataset':<15} {'Category':<10} {'Accuracy':>10} {'Mean Reward':>12} {'N':>6}")
-    print("-" * 60)
+    print("-" * 70)
 
     category_accs = {}
+    category_rewards = {}
     overall_accs = []
+    overall_rewards = []
 
     for ds_name in eval_datasets:
         if ds_name in results and "error" not in results[ds_name]:
@@ -326,17 +328,31 @@ def main() -> None:
             print(f"{ds_name:<15} {r['category']:<10} {r['accuracy']:>10.4f} {r['mean_reward']:>12.4f} {r['n_examples']:>6}")
             cat = r["category"]
             category_accs.setdefault(cat, []).append(r["accuracy"])
+            category_rewards.setdefault(cat, []).append(r["mean_reward"])
             overall_accs.append(r["accuracy"])
+            overall_rewards.append(r["mean_reward"])
 
-    print("-" * 60)
+    print("-" * 70)
     for cat in sorted(category_accs):
-        cat_mean = sum(category_accs[cat]) / len(category_accs[cat])
-        print(f"{'[' + cat + ']':<15} {'avg':<10} {cat_mean:>10.4f}")
+        cat_acc = sum(category_accs[cat]) / len(category_accs[cat])
+        cat_rew = sum(category_rewards[cat]) / len(category_rewards[cat])
+        # Use mean_reward for code (exact match accuracy is always 0)
+        display = cat_rew if cat == "code" else cat_acc
+        flag = " (reward)" if cat == "code" else ""
+        print(f"{'[' + cat + ']':<15} {'avg':<10} {display:>10.4f}{flag}")
 
     if overall_accs:
-        overall = sum(overall_accs) / len(overall_accs)
-        print(f"{'[OVERALL]':<15} {'avg':<10} {overall:>10.4f}")
+        overall_acc = sum(overall_accs) / len(overall_accs)
+        # For overall, substitute mean_reward for code datasets
+        mixed = []
+        for ds_name in eval_datasets:
+            if ds_name in results and "error" not in results[ds_name]:
+                r = results[ds_name]
+                mixed.append(r["mean_reward"] if r["category"] == "code" else r["accuracy"])
+        overall_mixed = sum(mixed) / len(mixed)
+        print(f"{'[OVERALL]':<15} {'avg':<10} {overall_mixed:>10.4f}  (code uses mean_reward)")
 
+    # Save results — category_means use accuracy except code uses mean_reward
     # Save results
     output = {
         "model": args.model,
@@ -345,10 +361,13 @@ def main() -> None:
         "temperature": args.temperature,
         "per_dataset": results,
         "category_means": {
-            cat: sum(accs) / len(accs)
-            for cat, accs in category_accs.items()
+            cat: (sum(category_rewards[cat]) / len(category_rewards[cat])
+                  if cat == "code"
+                  else sum(category_accs[cat]) / len(category_accs[cat]))
+            for cat in category_accs
         },
-        "overall_accuracy": sum(overall_accs) / len(overall_accs) if overall_accs else None,
+        "overall_accuracy": sum(overall_rewards if True else overall_accs) / len(overall_accs) if overall_accs else None,
+        "overall_mixed": overall_mixed if overall_accs else None,
     }
 
     label = args.label or "eval"
