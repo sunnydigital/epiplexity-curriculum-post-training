@@ -55,7 +55,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--probe-model",
         type=str,
-        default="Qwen/Qwen2.5-0.5B-Instruct",
+        default="Qwen/Qwen2.5-1.5B-Instruct",
         help="HuggingFace model to use as probe (same family as training target)",
     )
     parser.add_argument(
@@ -67,7 +67,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--max-samples",
         type=int,
-        default=500,
+        default=2000,
         help="Max samples per dataset for training the probe",
     )
     parser.add_argument(
@@ -85,7 +85,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--train-steps",
         type=int,
-        default=200,
+        default=500,
         help="Number of training steps per dataset for K_auc estimation",
     )
     parser.add_argument(

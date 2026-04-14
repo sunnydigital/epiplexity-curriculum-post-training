@@ -49,7 +49,7 @@ from rewards import RewardTracker
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="GRPO curriculum post-training")
     parser.add_argument(
-        "--model", type=str, default="Qwen/Qwen2.5-1.5B-Instruct",
+        "--model", type=str, default="Qwen/Qwen2.5-3B-Instruct",
         help="HuggingFace model name or local path",
     )
     parser.add_argument(

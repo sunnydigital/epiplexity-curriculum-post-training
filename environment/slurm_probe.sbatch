@@ -23,12 +23,12 @@ mkdir -p $HF_HOME $TRANSFORMERS_CACHE $HF_DATASETS_CACHE
 # dataset and computing K_auc (prequential model description length).
 # This *trains* per dataset (not just inference), so takes longer than perplexity.
 python probe_epiplexity.py \
-    --probe-model Qwen/Qwen2.5-0.5B-Instruct \
+    --probe-model Qwen/Qwen2.5-1.5B-Instruct \
     --output data/epiplexity_scores.json \
-    --max-samples 500 \
+    --max-samples 2000 \
     --batch-size 4 \
     --max-length 512 \
-    --train-steps 200 \
+    --train-steps 500 \
     --lr 5e-5 \
     --log-interval 10
 

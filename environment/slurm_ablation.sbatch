@@ -5,8 +5,8 @@
 #SBATCH --partition=a100_short
 #SBATCH --gres=gpu:a100:1
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=64G
-#SBATCH --time=04:00:00
+#SBATCH --mem=180G
+#SBATCH --time=12:00:00
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=gs4342@nyu.edu
 #
@@ -43,7 +43,7 @@ echo "GPU: $(nvidia-smi --query-gpu=name --format=csv,noheader | head -1)"
 echo "================================"
 
 python post_training.py \
-    --model Qwen/Qwen2.5-1.5B-Instruct \
+    --model Qwen/Qwen2.5-3B-Instruct \
     --scores-path data/epiplexity_scores.json \
     --config configs/training_config.yaml \
     --output-dir "$OUTPUT_DIR" \

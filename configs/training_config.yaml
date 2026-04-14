@@ -2,7 +2,7 @@
 # Fields map to trl.GRPOConfig / trl.TrainingArguments
 
 # Model
-model_name: "Qwen/Qwen2.5-1.5B-Instruct"
+model_name: "Qwen/Qwen2.5-3B-Instruct"
 
 # Output
 output_dir: "./outputs/grpo"
@@ -10,28 +10,28 @@ logging_dir: "./outputs/grpo/logs"
 
 # Training loop
 num_train_epochs: 1
-per_device_train_batch_size: 4
-gradient_accumulation_steps: 4
-max_steps: 500               # smoke-test cap — remove for full training
+per_device_train_batch_size: 2       # reduced for 3B model
+gradient_accumulation_steps: 8       # effective batch = 16 prompts
+max_steps: 2000                      # 4x longer than v1
 
 # GRPO-specific
-num_generations: 8           # rollout samples per prompt (reduce to 4 if OOM)
+num_generations: 8                   # rollout samples per prompt (reduce to 4 if OOM)
 max_prompt_length: 512
 max_completion_length: 256
 
 # Optimizer
-learning_rate: 5.0e-6
+learning_rate: 3.0e-6                # slightly lower for 3B
 lr_scheduler_type: "cosine"
 warmup_ratio: 0.03
 weight_decay: 0.01
 
 # Checkpointing & logging
-logging_steps: 5
-save_steps: 500               # save only at end — avoids ~20min GPFS stalls per checkpoint
+logging_steps: 10
+save_steps: 1000                     # save at midpoint and end
 save_total_limit: 3
 
 # GRPO KL / reward
-beta: 0.04                   # KL penalty coefficient
+beta: 0.04                           # KL penalty coefficient
 
 # Mixed precision (set to "bf16" for A100, "fp16" for older GPUs)
 bf16: true
