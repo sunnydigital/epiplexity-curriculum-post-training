@@ -92,9 +92,14 @@ def qa_reward(
 
 
 def _mcq_reward(completion: str, answer: str) -> float:
-    """MMLU/ARC: extract first letter and compare to expected letter."""
+    """MMLU/ARC: extract first letter and compare to expected letter.
+    Handles both letter ('B') and numeric ('1') gold answer formats.
+    """
     pred = _extract_letter(completion)
     gold = answer.strip().upper()
+    # Normalize numeric answers (ClassLabel cast → "0","1","2","3") to letters
+    _NUM_TO_LETTER = {"0": "A", "1": "B", "2": "C", "3": "D"}
+    gold = _NUM_TO_LETTER.get(gold, gold)
     return 1.0 if (pred is not None and pred == gold) else 0.0
 
 
