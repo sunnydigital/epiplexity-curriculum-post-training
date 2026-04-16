@@ -42,11 +42,13 @@ def _get_formatters():
 
 
 # Registry schema per dataset:
-#   hf_path:    HuggingFace dataset identifier
-#   hf_config:  dataset config/subset name (None if not needed)
-#   split:      train split name
-#   category:   one of "math" | "code" | "logical" | "qa"
-#   formatter:  callable (example dict) -> {"prompt", "answer", "dataset", "category"}
+#   hf_path:        HuggingFace dataset identifier
+#   hf_config:      dataset config/subset name (None if not needed)
+#   split:          train split name
+#   category:       one of "math" | "code" | "logical" | "qa"
+#   stratify_field: raw dataset field to stratify on before formatting (optional).
+#                   Must be read from the raw HF dataset — formatters drop these columns.
+#   formatter:      callable (example dict) -> {"prompt", "answer", "dataset", "category"}
 DATASET_REGISTRY: dict[str, dict] = {
     "gsm8k": {
         "hf_path": "openai/gsm8k",
@@ -59,6 +61,8 @@ DATASET_REGISTRY: dict[str, dict] = {
         "hf_config": "algebra",
         "split": "train",
         "category": "math",
+        # Explicitly sorted Level 1→5; a head-slice is almost entirely easy problems
+        "stratify_field": "level",
     },
     "humaneval": {
         "hf_path": "openai/openai_humaneval",
@@ -77,6 +81,8 @@ DATASET_REGISTRY: dict[str, dict] = {
         "hf_config": "all",
         "split": "test",
         "category": "logical",
+        # Grouped alphabetically by subject; head-slice over-represents early subjects
+        "stratify_field": "subject",
     },
     "arc": {
         "hf_path": "allenai/ai2_arc",

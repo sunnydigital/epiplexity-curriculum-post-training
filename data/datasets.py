@@ -9,6 +9,7 @@ The "answer" field is the ground-truth used by reward functions.
 """
 from __future__ import annotations
 
+import random
 import re
 from typing import Callable
 
@@ -181,17 +182,79 @@ def format_boolq(example: dict) -> dict:
 # Combined loader
 # ---------------------------------------------------------------------------
 
+def _stratified_sample(
+    dataset: Dataset,
+    field: str,
+    n: int,
+    seed: int,
+) -> Dataset:
+    """
+    Sample `n` examples from `dataset` with equal representation across
+    each unique value of `field` (e.g. difficulty level, subject).
+
+    Operates on the raw dataset before formatting so that metadata fields
+    like 'level' (MATH) and 'subject' (MMLU) are still present.
+
+    Each stratum gets floor(n / n_strata) samples. Remainder slots are
+    distributed one-by-one to the largest strata first. If a stratum has
+    fewer examples than its quota, all of them are taken and the shortfall
+    is redistributed to other strata.
+    """
+    rng = random.Random(seed)
+
+    # Group indices by stratum value
+    strata: dict[str, list[int]] = {}
+    for i, val in enumerate(dataset[field]):
+        key = str(val)
+        strata.setdefault(key, []).append(i)
+
+    # Shuffle within each stratum for reproducibility
+    for indices in strata.values():
+        rng.shuffle(indices)
+
+    n_strata = len(strata)
+    base_quota = n // n_strata
+    remainder = n % n_strata
+
+    # Sort strata by size descending so remainder slots go to the largest
+    sorted_strata = sorted(strata.items(), key=lambda kv: -len(kv[1]))
+
+    selected: list[int] = []
+    leftover = 0  # unmet quota from small strata
+    quotas = {k: base_quota + (1 if i < remainder else 0)
+              for i, (k, _) in enumerate(sorted_strata)}
+
+    for key, indices in sorted_strata:
+        quota = quotas[key] + leftover
+        take = min(quota, len(indices))
+        selected.extend(indices[:take])
+        leftover = quota - take  # propagate shortfall forward
+
+    # Final shuffle so strata aren't block-ordered
+    rng.shuffle(selected)
+    return dataset.select(selected[:n])
+
+
 def load_all_datasets(
     registry: dict[str, dict],
     max_samples_per_dataset: int | None = None,
+    seed: int = 42,
 ) -> dict[str, Dataset]:
     """
     Load and format all datasets in the registry.
 
+    For datasets with a 'stratify_field' in their registry entry (currently
+    'math' on 'level' and 'mmlu' on 'subject'), stratified sampling is applied
+    to the raw dataset *before* formatting so that difficulty/subject balance is
+    preserved. This must happen before formatting because those fields are dropped
+    by remove_columns.
+
+    For all other datasets a plain shuffle is applied before slicing.
+
     Args:
         registry: Output of get_registry_with_formatters() from data.registry.
         max_samples_per_dataset: If set, truncate each dataset to this many samples.
-            Useful for smoke tests.
+        seed: Random seed for reproducible shuffles and stratified samples.
 
     Returns:
         Dict mapping dataset name to a formatted HuggingFace Dataset with columns:
@@ -207,6 +270,21 @@ def load_all_datasets(
 
         raw = load_dataset(**kwargs)
 
+        # --- sampling on raw (before formatting drops metadata columns) ---
+        stratify_field = cfg.get("stratify_field")
+        if max_samples_per_dataset is not None:
+            if stratify_field and stratify_field in raw.column_names:
+                n = min(max_samples_per_dataset, len(raw))
+                raw = _stratified_sample(raw, stratify_field, n, seed)
+                print(f"  stratified on '{stratify_field}' → {len(raw)} examples")
+            else:
+                raw = raw.shuffle(seed=seed).select(
+                    range(min(max_samples_per_dataset, len(raw)))
+                )
+        else:
+            # Always shuffle even when not truncating to avoid ordering artifacts
+            raw = raw.shuffle(seed=seed)
+
         formatter: Callable = cfg["formatter"]
         formatted = raw.map(
             formatter,
@@ -217,9 +295,6 @@ def load_all_datasets(
         # Cast to canonical schema — prevents ClassLabel / Value mismatches
         # when concatenating datasets (e.g. MMLU's answer is ClassLabel)
         formatted = formatted.cast(_FORMATTED_FEATURES)
-
-        if max_samples_per_dataset is not None:
-            formatted = formatted.select(range(min(max_samples_per_dataset, len(formatted))))
 
         loaded[name] = formatted
         print(f"  → {len(formatted):,} examples")
