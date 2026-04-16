@@ -1,148 +1,148 @@
 {
   "sweep": {
-    "high_first": {
-      "model": "/gpfs/scratch/gs4342/grpo-sweep/high_first/final",
-      "label": "high_first",
+    "anneal_to_high": {
+      "model": "/gpfs/scratch/gs4342/grpo-sweep/anneal_to_high/final",
+      "label": "anneal_to_high",
       "max_samples": 500,
       "temperature": 0.0,
       "per_dataset": {
         "gsm8k": {
-          "accuracy": 0.29,
-          "mean_reward": 0.643,
+          "accuracy": 0.3,
+          "mean_reward": 0.648,
           "n_examples": 500,
           "category": "math",
-          "elapsed_seconds": 278.8
+          "elapsed_seconds": 299.8
         },
         "math": {
-          "accuracy": 0.164,
-          "mean_reward": 0.464,
+          "accuracy": 0.162,
+          "mean_reward": 0.462,
           "n_examples": 500,
           "category": "math",
-          "elapsed_seconds": 281.0
+          "elapsed_seconds": 297.8
         },
         "humaneval": {
           "accuracy": 0.0,
-          "mean_reward": 0.3768902439024391,
+          "mean_reward": 0.37768292682926835,
           "n_examples": 164,
           "category": "code",
-          "elapsed_seconds": 98.3
+          "elapsed_seconds": 103.7
         },
         "mbpp": {
           "accuracy": 0.0,
-          "mean_reward": 0.31369649805447486,
+          "mean_reward": 0.31233463035019454,
           "n_examples": 257,
           "category": "code",
-          "elapsed_seconds": 147.1
+          "elapsed_seconds": 157.0
         },
         "mmlu": {
-          "accuracy": 0.596,
-          "mean_reward": 0.596,
+          "accuracy": 0.578,
+          "mean_reward": 0.578,
           "n_examples": 500,
           "category": "logical",
-          "elapsed_seconds": 278.6
+          "elapsed_seconds": 287.6
         },
         "arc": {
-          "accuracy": 0.756,
-          "mean_reward": 0.756,
+          "accuracy": 0.754,
+          "mean_reward": 0.754,
           "n_examples": 500,
           "category": "logical",
-          "elapsed_seconds": 275.3
+          "elapsed_seconds": 280.0
         },
         "triviaqa": {
           "accuracy": 0.49,
           "mean_reward": 0.49,
           "n_examples": 500,
           "category": "qa",
-          "elapsed_seconds": 276.8
-        },
-        "boolq": {
-          "accuracy": 0.746,
-          "mean_reward": 0.746,
-          "n_examples": 500,
-          "category": "qa",
-          "elapsed_seconds": 283.2
-        }
-      },
-      "category_means": {
-        "math": 0.22699999999999998,
-        "code": 0.34529337097845697,
-        "logical": 0.6759999999999999,
-        "qa": 0.618
-      },
-      "overall_accuracy": 0.5481983427446142,
-      "overall_mixed": 0.4665733427446143
-    },
-    "uniform": {
-      "model": "/gpfs/scratch/gs4342/grpo-sweep/uniform/final",
-      "label": "uniform",
-      "max_samples": 500,
-      "temperature": 0.0,
-      "per_dataset": {
-        "gsm8k": {
-          "accuracy": 0.306,
-          "mean_reward": 0.651,
-          "n_examples": 500,
-          "category": "math",
-          "elapsed_seconds": 277.8
-        },
-        "math": {
-          "accuracy": 0.176,
-          "mean_reward": 0.469,
-          "n_examples": 500,
-          "category": "math",
-          "elapsed_seconds": 281.9
-        },
-        "humaneval": {
-          "accuracy": 0.0,
-          "mean_reward": 0.3882317073170733,
-          "n_examples": 164,
-          "category": "code",
-          "elapsed_seconds": 98.3
-        },
-        "mbpp": {
-          "accuracy": 0.0,
-          "mean_reward": 0.3015564202334631,
-          "n_examples": 257,
-          "category": "code",
-          "elapsed_seconds": 147.1
-        },
-        "mmlu": {
-          "accuracy": 0.584,
-          "mean_reward": 0.584,
-          "n_examples": 500,
-          "category": "logical",
-          "elapsed_seconds": 277.8
-        },
-        "arc": {
-          "accuracy": 0.758,
-          "mean_reward": 0.758,
-          "n_examples": 500,
-          "category": "logical",
-          "elapsed_seconds": 279.1
-        },
-        "triviaqa": {
-          "accuracy": 0.486,
-          "mean_reward": 0.486,
-          "n_examples": 500,
-          "category": "qa",
-          "elapsed_seconds": 278.2
+          "elapsed_seconds": 294.2
         },
         "boolq": {
           "accuracy": 0.756,
           "mean_reward": 0.756,
           "n_examples": 500,
           "category": "qa",
-          "elapsed_seconds": 281.4
+          "elapsed_seconds": 301.7
         }
       },
       "category_means": {
-        "math": 0.241,
-        "code": 0.3448940637752682,
-        "logical": 0.671,
-        "qa": 0.621
+        "math": 0.23099999999999998,
+        "code": 0.34500877858973145,
+        "logical": 0.6659999999999999,
+        "qa": 0.623
       },
-      "overall_accuracy": 0.5492235159438171,
-      "overall_mixed": 0.46947351594381703
+      "overall_accuracy": 0.5472521946474329,
+      "overall_mixed": 0.46625219464743284
+    },
+    "baseline_3b": {
+      "model": "Qwen/Qwen2.5-3B-Instruct",
+      "label": "baseline_3b",
+      "max_samples": 500,
+      "temperature": 0.0,
+      "per_dataset": {
+        "gsm8k": {
+          "accuracy": 0.3,
+          "mean_reward": 0.649,
+          "n_examples": 500,
+          "category": "math",
+          "elapsed_seconds": 223.8
+        },
+        "math": {
+          "accuracy": 0.152,
+          "mean_reward": 0.458,
+          "n_examples": 500,
+          "category": "math",
+          "elapsed_seconds": 225.6
+        },
+        "humaneval": {
+          "accuracy": 0.0,
+          "mean_reward": 0.38445121951219524,
+          "n_examples": 164,
+          "category": "code",
+          "elapsed_seconds": 78.1
+        },
+        "mbpp": {
+          "accuracy": 0.0,
+          "mean_reward": 0.30066147859922177,
+          "n_examples": 257,
+          "category": "code",
+          "elapsed_seconds": 118.5
+        },
+        "mmlu": {
+          "accuracy": 0.57,
+          "mean_reward": 0.57,
+          "n_examples": 500,
+          "category": "logical",
+          "elapsed_seconds": 223.1
+        },
+        "arc": {
+          "accuracy": 0.728,
+          "mean_reward": 0.728,
+          "n_examples": 500,
+          "category": "logical",
+          "elapsed_seconds": 223.0
+        },
+        "triviaqa": {
+          "accuracy": 0.498,
+          "mean_reward": 0.498,
+          "n_examples": 500,
+          "category": "qa",
+          "elapsed_seconds": 221.5
+        },
+        "boolq": {
+          "accuracy": 0.762,
+          "mean_reward": 0.762,
+          "n_examples": 500,
+          "category": "qa",
+          "elapsed_seconds": 224.4
+        }
+      },
+      "category_means": {
+        "math": 0.22599999999999998,
+        "code": 0.34255634905570853,
+        "logical": 0.649,
+        "qa": 0.63
+      },
+      "overall_accuracy": 0.5437640872639271,
+      "overall_mixed": 0.46188908726392713
     },
     "high_constant": {
       "model": "/gpfs/scratch/gs4342/grpo-sweep/high_constant/final",
@@ -155,56 +155,56 @@
           "mean_reward": 0.648,
           "n_examples": 500,
           "category": "math",
-          "elapsed_seconds": 279.9
+          "elapsed_seconds": 276.4
         },
         "math": {
           "accuracy": 0.17,
           "mean_reward": 0.467,
           "n_examples": 500,
           "category": "math",
-          "elapsed_seconds": 279.5
+          "elapsed_seconds": 276.1
         },
         "humaneval": {
           "accuracy": 0.0,
           "mean_reward": 0.38554878048780505,
           "n_examples": 164,
           "category": "code",
-          "elapsed_seconds": 99.0
+          "elapsed_seconds": 96.0
         },
         "mbpp": {
           "accuracy": 0.0,
           "mean_reward": 0.31560311284046694,
           "n_examples": 257,
           "category": "code",
-          "elapsed_seconds": 146.6
+          "elapsed_seconds": 146.0
         },
         "mmlu": {
           "accuracy": 0.59,
           "mean_reward": 0.59,
           "n_examples": 500,
           "category": "logical",
-          "elapsed_seconds": 278.9
+          "elapsed_seconds": 274.9
         },
         "arc": {
           "accuracy": 0.746,
           "mean_reward": 0.746,
           "n_examples": 500,
           "category": "logical",
-          "elapsed_seconds": 277.9
+          "elapsed_seconds": 273.2
         },
         "triviaqa": {
           "accuracy": 0.496,
           "mean_reward": 0.496,
           "n_examples": 500,
           "category": "qa",
-          "elapsed_seconds": 276.5
+          "elapsed_seconds": 272.4
         },
         "boolq": {
           "accuracy": 0.756,
           "mean_reward": 0.756,
           "n_examples": 500,
           "category": "qa",
-          "elapsed_seconds": 284.3
+          "elapsed_seconds": 277.4
         }
       },
       "category_means": {
@@ -215,153 +215,297 @@
       },
       "overall_accuracy": 0.5505189866660339,
       "overall_mixed": 0.469893986666034
-    }
-  },
-  "ablation": {
-    "ablation_humaneval": {
-      "model": "/gpfs/scratch/gs4342/grpo-ablation/humaneval/final",
-      "label": "ablation_humaneval",
+    },
+    "high_first": {
+      "model": "/gpfs/scratch/gs4342/grpo-sweep/high_first/final",
+      "label": "high_first",
       "max_samples": 500,
       "temperature": 0.0,
       "per_dataset": {
         "gsm8k": {
-          "accuracy": 0.314,
-          "mean_reward": 0.656,
+          "accuracy": 0.29,
+          "mean_reward": 0.643,
           "n_examples": 500,
           "category": "math",
-          "elapsed_seconds": 279.4
+          "elapsed_seconds": 280.9
         },
         "math": {
-          "accuracy": 0.168,
-          "mean_reward": 0.467,
+          "accuracy": 0.164,
+          "mean_reward": 0.464,
           "n_examples": 500,
           "category": "math",
-          "elapsed_seconds": 279.1
+          "elapsed_seconds": 282.6
         },
         "humaneval": {
           "accuracy": 0.0,
-          "mean_reward": 0.47213414634146345,
+          "mean_reward": 0.3768902439024391,
           "n_examples": 164,
           "category": "code",
-          "elapsed_seconds": 96.7
+          "elapsed_seconds": 98.8
         },
         "mbpp": {
           "accuracy": 0.0,
-          "mean_reward": 0.308249027237354,
+          "mean_reward": 0.31369649805447486,
           "n_examples": 257,
           "category": "code",
-          "elapsed_seconds": 148.6
+          "elapsed_seconds": 148.3
         },
         "mmlu": {
-          "accuracy": 0.592,
-          "mean_reward": 0.592,
+          "accuracy": 0.596,
+          "mean_reward": 0.596,
           "n_examples": 500,
           "category": "logical",
-          "elapsed_seconds": 279.5
+          "elapsed_seconds": 282.5
         },
         "arc": {
-          "accuracy": 0.744,
-          "mean_reward": 0.744,
+          "accuracy": 0.756,
+          "mean_reward": 0.756,
           "n_examples": 500,
           "category": "logical",
-          "elapsed_seconds": 268.3
+          "elapsed_seconds": 279.6
         },
         "triviaqa": {
-          "accuracy": 0.488,
-          "mean_reward": 0.488,
+          "accuracy": 0.49,
+          "mean_reward": 0.49,
           "n_examples": 500,
           "category": "qa",
-          "elapsed_seconds": 279.7
+          "elapsed_seconds": 280.8
         },
         "boolq": {
+          "accuracy": 0.746,
+          "mean_reward": 0.746,
+          "n_examples": 500,
+          "category": "qa",
+          "elapsed_seconds": 286.7
+        }
+      },
+      "category_means": {
+        "math": 0.22699999999999998,
+        "code": 0.34529337097845697,
+        "logical": 0.6759999999999999,
+        "qa": 0.618
+      },
+      "overall_accuracy": 0.5481983427446142,
+      "overall_mixed": 0.4665733427446143
+    },
+    "low_constant": {
+      "model": "/gpfs/scratch/gs4342/grpo-sweep/low_constant/final",
+      "label": "low_constant",
+      "max_samples": 500,
+      "temperature": 0.0,
+      "per_dataset": {
+        "gsm8k": {
+          "accuracy": 0.324,
+          "mean_reward": 0.66,
+          "n_examples": 500,
+          "category": "math",
+          "elapsed_seconds": 281.3
+        },
+        "math": {
+          "accuracy": 0.156,
+          "mean_reward": 0.459,
+          "n_examples": 500,
+          "category": "math",
+          "elapsed_seconds": 283.6
+        },
+        "humaneval": {
+          "accuracy": 0.0,
+          "mean_reward": 0.391219512195122,
+          "n_examples": 164,
+          "category": "code",
+          "elapsed_seconds": 98.0
+        },
+        "mbpp": {
+          "accuracy": 0.0,
+          "mean_reward": 0.2900389105058365,
+          "n_examples": 257,
+          "category": "code",
+          "elapsed_seconds": 148.5
+        },
+        "mmlu": {
+          "accuracy": 0.58,
+          "mean_reward": 0.58,
+          "n_examples": 500,
+          "category": "logical",
+          "elapsed_seconds": 281.9
+        },
+        "arc": {
           "accuracy": 0.758,
           "mean_reward": 0.758,
           "n_examples": 500,
+          "category": "logical",
+          "elapsed_seconds": 278.7
+        },
+        "triviaqa": {
+          "accuracy": 0.49,
+          "mean_reward": 0.49,
+          "n_examples": 500,
           "category": "qa",
-          "elapsed_seconds": 275.6
+          "elapsed_seconds": 281.6
+        },
+        "boolq": {
+          "accuracy": 0.762,
+          "mean_reward": 0.762,
+          "n_examples": 500,
+          "category": "qa",
+          "elapsed_seconds": 284.3
+        }
+      },
+      "category_means": {
+        "math": 0.24,
+        "code": 0.3406292113504793,
+        "logical": 0.669,
+        "qa": 0.626
+      },
+      "overall_accuracy": 0.5487823028376198,
+      "overall_mixed": 0.4689073028376198
+    },
+    "low_first": {
+      "model": "/gpfs/scratch/gs4342/grpo-sweep/low_first/final",
+      "label": "low_first",
+      "max_samples": 500,
+      "temperature": 0.0,
+      "per_dataset": {
+        "gsm8k": {
+          "accuracy": 0.308,
+          "mean_reward": 0.653,
+          "n_examples": 500,
+          "category": "math",
+          "elapsed_seconds": 276.6
+        },
+        "math": {
+          "accuracy": 0.17,
+          "mean_reward": 0.466,
+          "n_examples": 500,
+          "category": "math",
+          "elapsed_seconds": 277.5
+        },
+        "humaneval": {
+          "accuracy": 0.0,
+          "mean_reward": 0.3903048780487806,
+          "n_examples": 164,
+          "category": "code",
+          "elapsed_seconds": 95.9
+        },
+        "mbpp": {
+          "accuracy": 0.0,
+          "mean_reward": 0.3001167315175098,
+          "n_examples": 257,
+          "category": "code",
+          "elapsed_seconds": 145.5
+        },
+        "mmlu": {
+          "accuracy": 0.588,
+          "mean_reward": 0.588,
+          "n_examples": 500,
+          "category": "logical",
+          "elapsed_seconds": 277.3
+        },
+        "arc": {
+          "accuracy": 0.752,
+          "mean_reward": 0.752,
+          "n_examples": 500,
+          "category": "logical",
+          "elapsed_seconds": 272.9
+        },
+        "triviaqa": {
+          "accuracy": 0.486,
+          "mean_reward": 0.486,
+          "n_examples": 500,
+          "category": "qa",
+          "elapsed_seconds": 274.9
+        },
+        "boolq": {
+          "accuracy": 0.766,
+          "mean_reward": 0.766,
+          "n_examples": 500,
+          "category": "qa",
+          "elapsed_seconds": 279.2
+        }
+      },
+      "category_means": {
+        "math": 0.239,
+        "code": 0.3452108047831452,
+        "logical": 0.6699999999999999,
+        "qa": 0.626
+      },
+      "overall_accuracy": 0.5501777011957862,
+      "overall_mixed": 0.47005270119578624
+    },
+    "uniform": {
+      "model": "/gpfs/scratch/gs4342/grpo-sweep/uniform/final",
+      "label": "uniform",
+      "max_samples": 500,
+      "temperature": 0.0,
+      "per_dataset": {
+        "gsm8k": {
+          "accuracy": 0.306,
+          "mean_reward": 0.651,
+          "n_examples": 500,
+          "category": "math",
+          "elapsed_seconds": 280.8
+        },
+        "math": {
+          "accuracy": 0.176,
+          "mean_reward": 0.469,
+          "n_examples": 500,
+          "category": "math",
+          "elapsed_seconds": 281.6
+        },
+        "humaneval": {
+          "accuracy": 0.0,
+          "mean_reward": 0.3882317073170733,
+          "n_examples": 164,
+          "category": "code",
+          "elapsed_seconds": 97.5
+        },
+        "mbpp": {
+          "accuracy": 0.0,
+          "mean_reward": 0.3015564202334631,
+          "n_examples": 257,
+          "category": "code",
+          "elapsed_seconds": 147.7
+        },
+        "mmlu": {
+          "accuracy": 0.584,
+          "mean_reward": 0.584,
+          "n_examples": 500,
+          "category": "logical",
+          "elapsed_seconds": 277.9
+        },
+        "arc": {
+          "accuracy": 0.758,
+          "mean_reward": 0.758,
+          "n_examples": 500,
+          "category": "logical",
+          "elapsed_seconds": 277.8
+        },
+        "triviaqa": {
+          "accuracy": 0.486,
+          "mean_reward": 0.486,
+          "n_examples": 500,
+          "category": "qa",
+          "elapsed_seconds": 277.7
+        },
+        "boolq": {
+          "accuracy": 0.756,
+          "mean_reward": 0.756,
+          "n_examples": 500,
+          "category": "qa",
+          "elapsed_seconds": 280.1
         }
       },
       "category_means": {
         "math": 0.241,
-        "code": 0.3901915867894087,
-        "logical": 0.6679999999999999,
-        "qa": 0.623
+        "code": 0.3448940637752682,
+        "logical": 0.671,
+        "qa": 0.621
       },
-      "overall_accuracy": 0.5606728966973522,
-      "overall_mixed": 0.48054789669735215
-    },
-    "ablation_gsm8k": {
-      "model": "/gpfs/scratch/gs4342/grpo-ablation/gsm8k/final",
-      "label": "ablation_gsm8k",
-      "max_samples": 500,
-      "temperature": 0.0,
-      "per_dataset": {
-        "gsm8k": {
-          "accuracy": 0.168,
-          "mean_reward": 0.584,
-          "n_examples": 500,
-          "category": "math",
-          "elapsed_seconds": 219.9
-        },
-        "math": {
-          "accuracy": 0.336,
-          "mean_reward": 0.56,
-          "n_examples": 500,
-          "category": "math",
-          "elapsed_seconds": 220.8
-        },
-        "humaneval": {
-          "accuracy": 0.0,
-          "mean_reward": 0.21591463414634135,
-          "n_examples": 164,
-          "category": "code",
-          "elapsed_seconds": 80.6
-        },
-        "mbpp": {
-          "accuracy": 0.0,
-          "mean_reward": 0.12953307392996105,
-          "n_examples": 257,
-          "category": "code",
-          "elapsed_seconds": 115.5
-        },
-        "mmlu": {
-          "accuracy": 0.576,
-          "mean_reward": 0.576,
-          "n_examples": 500,
-          "category": "logical",
-          "elapsed_seconds": 221.4
-        },
-        "arc": {
-          "accuracy": 0.764,
-          "mean_reward": 0.764,
-          "n_examples": 500,
-          "category": "logical",
-          "elapsed_seconds": 219.4
-        },
-        "triviaqa": {
-          "accuracy": 0.414,
-          "mean_reward": 0.414,
-          "n_examples": 500,
-          "category": "qa",
-          "elapsed_seconds": 217.9
-        },
-        "boolq": {
-          "accuracy": 0.666,
-          "mean_reward": 0.666,
-          "n_examples": 500,
-          "category": "qa",
-          "elapsed_seconds": 222.6
-        }
-      },
-      "category_means": {
-        "math": 0.252,
-        "code": 0.17272385403815121,
-        "logical": 0.6699999999999999,
-        "qa": 0.54
-      },
-      "overall_accuracy": 0.4886809635095378,
-      "overall_mixed": 0.4086809635095378
-    },
+      "overall_accuracy": 0.5492235159438171,
+      "overall_mixed": 0.46947351594381703
+    }
+  },
+  "ablation": {
     "ablation_arc": {
       "model": "/gpfs/scratch/gs4342/grpo-ablation/arc/final",
       "label": "ablation_arc",
@@ -373,56 +517,56 @@
           "mean_reward": 0.652,
           "n_examples": 500,
           "category": "math",
-          "elapsed_seconds": 282.6
+          "elapsed_seconds": 280.1
         },
         "math": {
           "accuracy": 0.156,
           "mean_reward": 0.459,
           "n_examples": 500,
           "category": "math",
-          "elapsed_seconds": 281.1
+          "elapsed_seconds": 277.9
         },
         "humaneval": {
           "accuracy": 0.0,
           "mean_reward": 0.37054878048780493,
           "n_examples": 164,
           "category": "code",
-          "elapsed_seconds": 97.8
+          "elapsed_seconds": 96.6
         },
         "mbpp": {
           "accuracy": 0.0,
           "mean_reward": 0.3037743190661479,
           "n_examples": 257,
           "category": "code",
-          "elapsed_seconds": 149.4
+          "elapsed_seconds": 146.2
         },
         "mmlu": {
           "accuracy": 0.642,
           "mean_reward": 0.642,
           "n_examples": 500,
           "category": "logical",
-          "elapsed_seconds": 272.4
+          "elapsed_seconds": 274.0
         },
         "arc": {
           "accuracy": 0.84,
           "mean_reward": 0.84,
           "n_examples": 500,
           "category": "logical",
-          "elapsed_seconds": 274.1
+          "elapsed_seconds": 276.1
         },
         "triviaqa": {
           "accuracy": 0.494,
           "mean_reward": 0.494,
           "n_examples": 500,
           "category": "qa",
-          "elapsed_seconds": 277.3
+          "elapsed_seconds": 280.0
         },
         "boolq": {
           "accuracy": 0.75,
           "mean_reward": 0.75,
           "n_examples": 500,
           "category": "qa",
-          "elapsed_seconds": 278.8
+          "elapsed_seconds": 277.3
         }
       },
       "category_means": {
@@ -445,56 +589,56 @@
           "mean_reward": 0.644,
           "n_examples": 500,
           "category": "math",
-          "elapsed_seconds": 279.9
+          "elapsed_seconds": 282.1
         },
         "math": {
           "accuracy": 0.166,
           "mean_reward": 0.464,
           "n_examples": 500,
           "category": "math",
-          "elapsed_seconds": 280.1
+          "elapsed_seconds": 282.4
         },
         "humaneval": {
           "accuracy": 0.0,
           "mean_reward": 0.376219512195122,
           "n_examples": 164,
           "category": "code",
-          "elapsed_seconds": 96.5
+          "elapsed_seconds": 98.0
         },
         "mbpp": {
           "accuracy": 0.0,
           "mean_reward": 0.2858754863813228,
           "n_examples": 257,
           "category": "code",
-          "elapsed_seconds": 146.3
+          "elapsed_seconds": 148.6
         },
         "mmlu": {
           "accuracy": 0.57,
           "mean_reward": 0.57,
           "n_examples": 500,
           "category": "logical",
-          "elapsed_seconds": 278.4
+          "elapsed_seconds": 280.7
         },
         "arc": {
           "accuracy": 0.74,
           "mean_reward": 0.74,
           "n_examples": 500,
           "category": "logical",
-          "elapsed_seconds": 277.2
+          "elapsed_seconds": 291.1
         },
         "triviaqa": {
           "accuracy": 0.492,
           "mean_reward": 0.492,
           "n_examples": 500,
           "category": "qa",
-          "elapsed_seconds": 275.1
+          "elapsed_seconds": 291.5
         },
         "boolq": {
           "accuracy": 0.75,
           "mean_reward": 0.75,
           "n_examples": 500,
           "category": "qa",
-          "elapsed_seconds": 283.6
+          "elapsed_seconds": 298.4
         }
       },
       "category_means": {
@@ -505,6 +649,150 @@
       },
       "overall_accuracy": 0.5402618748220556,
       "overall_mixed": 0.45901187482205563
+    },
+    "ablation_gsm8k": {
+      "model": "/gpfs/scratch/gs4342/grpo-ablation/gsm8k/final",
+      "label": "ablation_gsm8k",
+      "max_samples": 500,
+      "temperature": 0.0,
+      "per_dataset": {
+        "gsm8k": {
+          "accuracy": 0.168,
+          "mean_reward": 0.584,
+          "n_examples": 500,
+          "category": "math",
+          "elapsed_seconds": 225.4
+        },
+        "math": {
+          "accuracy": 0.336,
+          "mean_reward": 0.56,
+          "n_examples": 500,
+          "category": "math",
+          "elapsed_seconds": 226.6
+        },
+        "humaneval": {
+          "accuracy": 0.0,
+          "mean_reward": 0.21591463414634135,
+          "n_examples": 164,
+          "category": "code",
+          "elapsed_seconds": 77.9
+        },
+        "mbpp": {
+          "accuracy": 0.0,
+          "mean_reward": 0.12953307392996105,
+          "n_examples": 257,
+          "category": "code",
+          "elapsed_seconds": 118.9
+        },
+        "mmlu": {
+          "accuracy": 0.576,
+          "mean_reward": 0.576,
+          "n_examples": 500,
+          "category": "logical",
+          "elapsed_seconds": 226.4
+        },
+        "arc": {
+          "accuracy": 0.764,
+          "mean_reward": 0.764,
+          "n_examples": 500,
+          "category": "logical",
+          "elapsed_seconds": 224.8
+        },
+        "triviaqa": {
+          "accuracy": 0.414,
+          "mean_reward": 0.414,
+          "n_examples": 500,
+          "category": "qa",
+          "elapsed_seconds": 223.2
+        },
+        "boolq": {
+          "accuracy": 0.666,
+          "mean_reward": 0.666,
+          "n_examples": 500,
+          "category": "qa",
+          "elapsed_seconds": 228.2
+        }
+      },
+      "category_means": {
+        "math": 0.252,
+        "code": 0.17272385403815121,
+        "logical": 0.6699999999999999,
+        "qa": 0.54
+      },
+      "overall_accuracy": 0.4886809635095378,
+      "overall_mixed": 0.4086809635095378
+    },
+    "ablation_humaneval": {
+      "model": "/gpfs/scratch/gs4342/grpo-ablation/humaneval/final",
+      "label": "ablation_humaneval",
+      "max_samples": 500,
+      "temperature": 0.0,
+      "per_dataset": {
+        "gsm8k": {
+          "accuracy": 0.314,
+          "mean_reward": 0.656,
+          "n_examples": 500,
+          "category": "math",
+          "elapsed_seconds": 286.6
+        },
+        "math": {
+          "accuracy": 0.168,
+          "mean_reward": 0.467,
+          "n_examples": 500,
+          "category": "math",
+          "elapsed_seconds": 287.5
+        },
+        "humaneval": {
+          "accuracy": 0.0,
+          "mean_reward": 0.47213414634146345,
+          "n_examples": 164,
+          "category": "code",
+          "elapsed_seconds": 100.1
+        },
+        "mbpp": {
+          "accuracy": 0.0,
+          "mean_reward": 0.308249027237354,
+          "n_examples": 257,
+          "category": "code",
+          "elapsed_seconds": 152.3
+        },
+        "mmlu": {
+          "accuracy": 0.592,
+          "mean_reward": 0.592,
+          "n_examples": 500,
+          "category": "logical",
+          "elapsed_seconds": 287.5
+        },
+        "arc": {
+          "accuracy": 0.744,
+          "mean_reward": 0.744,
+          "n_examples": 500,
+          "category": "logical",
+          "elapsed_seconds": 279.8
+        },
+        "triviaqa": {
+          "accuracy": 0.488,
+          "mean_reward": 0.488,
+          "n_examples": 500,
+          "category": "qa",
+          "elapsed_seconds": 282.1
+        },
+        "boolq": {
+          "accuracy": 0.758,
+          "mean_reward": 0.758,
+          "n_examples": 500,
+          "category": "qa",
+          "elapsed_seconds": 283.3
+        }
+      },
+      "category_means": {
+        "math": 0.241,
+        "code": 0.3901915867894087,
+        "logical": 0.6679999999999999,
+        "qa": 0.623
+      },
+      "overall_accuracy": 0.5606728966973522,
+      "overall_mixed": 0.48054789669735215
     },
     "ablation_math": {
       "model": "/gpfs/scratch/gs4342/grpo-ablation/math/final",
@@ -517,56 +805,56 @@
           "mean_reward": 0.644,
           "n_examples": 500,
           "category": "math",
-          "elapsed_seconds": 281.4
+          "elapsed_seconds": 277.8
         },
         "math": {
           "accuracy": 0.336,
           "mean_reward": 0.567,
           "n_examples": 500,
           "category": "math",
-          "elapsed_seconds": 279.6
+          "elapsed_seconds": 280.3
         },
         "humaneval": {
           "accuracy": 0.0,
           "mean_reward": 0.38902439024390245,
           "n_examples": 164,
           "category": "code",
-          "elapsed_seconds": 97.3
+          "elapsed_seconds": 96.1
         },
         "mbpp": {
           "accuracy": 0.0,
           "mean_reward": 0.3398832684824902,
           "n_examples": 257,
           "category": "code",
-          "elapsed_seconds": 149.1
+          "elapsed_seconds": 145.1
         },
         "mmlu": {
           "accuracy": 0.556,
           "mean_reward": 0.556,
           "n_examples": 500,
           "category": "logical",
-          "elapsed_seconds": 277.6
+          "elapsed_seconds": 276.7
         },
         "arc": {
           "accuracy": 0.728,
           "mean_reward": 0.728,
           "n_examples": 500,
           "category": "logical",
-          "elapsed_seconds": 274.6
+          "elapsed_seconds": 272.0
         },
         "triviaqa": {
           "accuracy": 0.494,
           "mean_reward": 0.494,
           "n_examples": 500,
           "category": "qa",
-          "elapsed_seconds": 275.4
+          "elapsed_seconds": 319.4
         },
         "boolq": {
           "accuracy": 0.77,
           "mean_reward": 0.77,
           "n_examples": 500,
           "category": "qa",
-          "elapsed_seconds": 280.7
+          "elapsed_seconds": 276.9
         }
       },
       "category_means": {
@@ -577,78 +865,6 @@
       },
       "overall_accuracy": 0.560988457340799,
       "overall_mixed": 0.48761345734079903
-    },
-    "ablation_mmlu": {
-      "model": "/gpfs/scratch/gs4342/grpo-ablation/mmlu/final",
-      "label": "ablation_mmlu",
-      "max_samples": 500,
-      "temperature": 0.0,
-      "per_dataset": {
-        "gsm8k": {
-          "accuracy": 0.284,
-          "mean_reward": 0.641,
-          "n_examples": 500,
-          "category": "math",
-          "elapsed_seconds": 279.7
-        },
-        "math": {
-          "accuracy": 0.156,
-          "mean_reward": 0.459,
-          "n_examples": 500,
-          "category": "math",
-          "elapsed_seconds": 281.0
-        },
-        "humaneval": {
-          "accuracy": 0.0,
-          "mean_reward": 0.38292682926829286,
-          "n_examples": 164,
-          "category": "code",
-          "elapsed_seconds": 98.8
-        },
-        "mbpp": {
-          "accuracy": 0.0,
-          "mean_reward": 0.29618677042801544,
-          "n_examples": 257,
-          "category": "code",
-          "elapsed_seconds": 147.4
-        },
-        "mmlu": {
-          "accuracy": 0.584,
-          "mean_reward": 0.584,
-          "n_examples": 500,
-          "category": "logical",
-          "elapsed_seconds": 279.6
-        },
-        "arc": {
-          "accuracy": 0.74,
-          "mean_reward": 0.74,
-          "n_examples": 500,
-          "category": "logical",
-          "elapsed_seconds": 277.4
-        },
-        "triviaqa": {
-          "accuracy": 0.486,
-          "mean_reward": 0.486,
-          "n_examples": 500,
-          "category": "qa",
-          "elapsed_seconds": 275.4
-        },
-        "boolq": {
-          "accuracy": 0.754,
-          "mean_reward": 0.754,
-          "n_examples": 500,
-          "category": "qa",
-          "elapsed_seconds": 284.4
-        }
-      },
-      "category_means": {
-        "math": 0.21999999999999997,
-        "code": 0.3395567998481541,
-        "logical": 0.6619999999999999,
-        "qa": 0.62
-      },
-      "overall_accuracy": 0.5428891999620384,
-      "overall_mixed": 0.4603891999620385
     },
     "ablation_mbpp": {
       "model": "/gpfs/scratch/gs4342/grpo-ablation/mbpp/final",
@@ -661,56 +877,56 @@
           "mean_reward": 0.656,
           "n_examples": 500,
           "category": "math",
-          "elapsed_seconds": 279.3
+          "elapsed_seconds": 275.5
         },
         "math": {
           "accuracy": 0.166,
           "mean_reward": 0.465,
           "n_examples": 500,
           "category": "math",
-          "elapsed_seconds": 278.8
+          "elapsed_seconds": 276.6
         },
         "humaneval": {
           "accuracy": 0.0,
           "mean_reward": 0.3875609756097562,
           "n_examples": 164,
           "category": "code",
-          "elapsed_seconds": 98.2
+          "elapsed_seconds": 95.5
         },
         "mbpp": {
           "accuracy": 0.0,
           "mean_reward": 0.41334630350194557,
           "n_examples": 257,
           "category": "code",
-          "elapsed_seconds": 144.5
+          "elapsed_seconds": 142.3
         },
         "mmlu": {
           "accuracy": 0.574,
           "mean_reward": 0.574,
           "n_examples": 500,
           "category": "logical",
-          "elapsed_seconds": 276.3
+          "elapsed_seconds": 273.4
         },
         "arc": {
           "accuracy": 0.73,
           "mean_reward": 0.73,
           "n_examples": 500,
           "category": "logical",
-          "elapsed_seconds": 278.1
+          "elapsed_seconds": 272.8
         },
         "triviaqa": {
           "accuracy": 0.498,
           "mean_reward": 0.498,
           "n_examples": 500,
           "category": "qa",
-          "elapsed_seconds": 276.8
+          "elapsed_seconds": 273.9
         },
         "boolq": {
           "accuracy": 0.756,
           "mean_reward": 0.756,
           "n_examples": 500,
           "category": "qa",
-          "elapsed_seconds": 281.4
+          "elapsed_seconds": 278.6
         }
       },
       "category_means": {
@@ -721,6 +937,78 @@
       },
       "overall_accuracy": 0.5599884098889627,
       "overall_mixed": 0.4801134098889628
+    },
+    "ablation_mmlu": {
+      "model": "/gpfs/scratch/gs4342/grpo-ablation/mmlu/final",
+      "label": "ablation_mmlu",
+      "max_samples": 500,
+      "temperature": 0.0,
+      "per_dataset": {
+        "gsm8k": {
+          "accuracy": 0.284,
+          "mean_reward": 0.641,
+          "n_examples": 500,
+          "category": "math",
+          "elapsed_seconds": 278.4
+        },
+        "math": {
+          "accuracy": 0.156,
+          "mean_reward": 0.459,
+          "n_examples": 500,
+          "category": "math",
+          "elapsed_seconds": 277.1
+        },
+        "humaneval": {
+          "accuracy": 0.0,
+          "mean_reward": 0.38292682926829286,
+          "n_examples": 164,
+          "category": "code",
+          "elapsed_seconds": 96.0
+        },
+        "mbpp": {
+          "accuracy": 0.0,
+          "mean_reward": 0.29618677042801544,
+          "n_examples": 257,
+          "category": "code",
+          "elapsed_seconds": 145.8
+        },
+        "mmlu": {
+          "accuracy": 0.584,
+          "mean_reward": 0.584,
+          "n_examples": 500,
+          "category": "logical",
+          "elapsed_seconds": 277.3
+        },
+        "arc": {
+          "accuracy": 0.74,
+          "mean_reward": 0.74,
+          "n_examples": 500,
+          "category": "logical",
+          "elapsed_seconds": 271.5
+        },
+        "triviaqa": {
+          "accuracy": 0.486,
+          "mean_reward": 0.486,
+          "n_examples": 500,
+          "category": "qa",
+          "elapsed_seconds": 273.8
+        },
+        "boolq": {
+          "accuracy": 0.754,
+          "mean_reward": 0.754,
+          "n_examples": 500,
+          "category": "qa",
+          "elapsed_seconds": 278.9
+        }
+      },
+      "category_means": {
+        "math": 0.21999999999999997,
+        "code": 0.3395567998481541,
+        "logical": 0.6619999999999999,
+        "qa": 0.62
+      },
+      "overall_accuracy": 0.5428891999620384,
+      "overall_mixed": 0.4603891999620385
     },
     "ablation_triviaqa": {
       "model": "/gpfs/scratch/gs4342/grpo-ablation/triviaqa/final",
@@ -733,56 +1021,56 @@
           "mean_reward": 0.652,
           "n_examples": 500,
           "category": "math",
-          "elapsed_seconds": 278.6
+          "elapsed_seconds": 281.3
         },
         "math": {
           "accuracy": 0.162,
           "mean_reward": 0.464,
           "n_examples": 500,
           "category": "math",
-          "elapsed_seconds": 281.1
+          "elapsed_seconds": 284.1
         },
         "humaneval": {
           "accuracy": 0.0,
           "mean_reward": 0.3823780487804879,
           "n_examples": 164,
           "category": "code",
-          "elapsed_seconds": 97.4
+          "elapsed_seconds": 98.2
         },
         "mbpp": {
           "accuracy": 0.0,
           "mean_reward": 0.2944357976653696,
           "n_examples": 257,
           "category": "code",
-          "elapsed_seconds": 146.1
+          "elapsed_seconds": 149.2
         },
         "mmlu": {
           "accuracy": 0.564,
           "mean_reward": 0.564,
           "n_examples": 500,
           "category": "logical",
-          "elapsed_seconds": 279.9
+          "elapsed_seconds": 281.1
         },
         "arc": {
           "accuracy": 0.732,
           "mean_reward": 0.732,
           "n_examples": 500,
           "category": "logical",
-          "elapsed_seconds": 276.7
+          "elapsed_seconds": 281.6
         },
         "triviaqa": {
           "accuracy": 0.5,
           "mean_reward": 0.5,
           "n_examples": 500,
           "category": "qa",
-          "elapsed_seconds": 279.8
+          "elapsed_seconds": 280.3
         },
         "boolq": {
           "accuracy": 0.764,
           "mean_reward": 0.764,
           "n_examples": 500,
           "category": "qa",
-          "elapsed_seconds": 280.0
+          "elapsed_seconds": 281.4
         }
       },
       "category_means": {
