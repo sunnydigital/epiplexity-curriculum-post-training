@@ -1,0 +1,80 @@
+{
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "temperature": 0.7,
+  "num_generations": 8,
+  "max_samples": 200,
+  "per_dataset": {
+    "gsm8k": {
+      "mean_reward_variance": 0.03322265625,
+      "std_reward_variance": 0.026659970237446318,
+      "mean_reward": 0.6103125,
+      "n_prompts": 200,
+      "num_generations": 8,
+      "category": "math",
+      "elapsed_seconds": 1089.2
+    },
+    "math": {
+      "mean_reward_variance": 0.048125,
+      "std_reward_variance": 0.06144341273684267,
+      "mean_reward": 0.505,
+      "n_prompts": 200,
+      "num_generations": 8,
+      "category": "math",
+      "elapsed_seconds": 1079.1
+    },
+    "humaneval": {
+      "mean_reward_variance": 0.047795665015243904,
+      "std_reward_variance": 0.01965065006296237,
+      "mean_reward": 0.24314786585365852,
+      "n_prompts": 164,
+      "num_generations": 8,
+      "category": "code",
+      "elapsed_seconds": 890.9
+    },
+    "mbpp": {
+      "mean_reward_variance": 0.0258972421875,
+      "std_reward_variance": 0.02097581994552647,
+      "mean_reward": 0.14628125,
+      "n_prompts": 200,
+      "num_generations": 8,
+      "category": "code",
+      "elapsed_seconds": 1084.4
+    },
+    "mmlu": {
+      "mean_reward_variance": 0.0759375,
+      "std_reward_variance": 0.09011223470622622,
+      "mean_reward": 0.5075,
+      "n_prompts": 200,
+      "num_generations": 8,
+      "category": "logical",
+      "elapsed_seconds": 1038.2
+    },
+    "arc": {
+      "mean_reward_variance": 0.061171875,
+      "std_reward_variance": 0.09002735993635143,
+      "mean_reward": 0.741875,
+      "n_prompts": 200,
+      "num_generations": 8,
+      "category": "logical",
+      "elapsed_seconds": 1008.5
+    },
+    "triviaqa": {
+      "mean_reward_variance": 0.04796875,
+      "std_reward_variance": 0.08083593410227594,
+      "mean_reward": 0.2875,
+      "n_prompts": 200,
+      "num_generations": 8,
+      "category": "qa",
+      "elapsed_seconds": 945.1
+    },
+    "boolq": {
+      "mean_reward_variance": 0.10359375,
+      "std_reward_variance": 0.10161428968008142,
+      "mean_reward": 0.71375,
+      "n_prompts": 200,
+      "num_generations": 8,
+      "category": "qa",
+      "elapsed_seconds": 920.1
+    }
+  }
+}
