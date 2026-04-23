@@ -92,8 +92,22 @@ We test two candidate predictors of which datasets yield the best cross-task tra
 |-----------|-----------|-----------|
 | **Epiplexity** | ρ = −0.17 | ρ = −0.02 |
 | **Reward Variance** | ρ = −0.05 | ρ = −0.31 |
+| **Rollout Epiplexity** (GRPO-native) | *pending* | *pending* |
 
-**No predictor shows positive correlation with transfer.** All four cells are near zero or negative.
+**No (existing) predictor shows positive correlation with transfer.** All four
+2×2 cells are near zero or negative.
+
+**Rollout Epiplexity** is a GRPO-native compressibility measurement introduced
+on this branch. It applies the Finzi et al. prequential coding procedure to
+the advantage-weighted GRPO surrogate loss on policy-sampled rollouts, rather
+than to teacher-forcing CE on dataset tokens. It is the first predictor in
+the intersection of (a) MDL-theoretic trajectory integration and
+(b) advantage-weighted rollout conditioning — the two properties that
+respectively distinguish epiplexity (which has a but not b) and reward
+variance (which has b only as a snapshot, not as a trajectory). Implementation:
+[measure_rollout_epiplexity.py](measure_rollout_epiplexity.py); SLURM:
+[environment/slurm_rollout_epiplexity.sbatch](environment/slurm_rollout_epiplexity.sbatch).
+Results table will be filled in once the cluster runs complete.
 
 ### Per-Dataset Values
 
@@ -159,16 +173,21 @@ python probe_epiplexity.py --probe-model Qwen/Qwen2.5-3B-Instruct --output data/
 python measure_reward_variance.py --model Qwen/Qwen2.5-1.5B-Instruct --output data/reward_variance_1.5b.json
 python measure_reward_variance.py --model Qwen/Qwen2.5-3B-Instruct --output data/reward_variance_3b.json
 
+# Rollout epiplexity (1.5B and 3B) — GRPO-native K_auc
+python measure_rollout_epiplexity.py --model Qwen/Qwen2.5-1.5B-Instruct --output data/rollout_epiplexity_1.5b.json
+python measure_rollout_epiplexity.py --model Qwen/Qwen2.5-3B-Instruct --output data/rollout_epiplexity_3b.json
+
 # Training (one strategy)
 python post_training.py --curriculum uniform
 
 # Evaluation
 python evaluate.py --model outputs/grpo/final --label uniform --max-samples 500
 
-# Aggregate
+# Aggregate (with predictor Spearman correlations)
 python compare_results.py \
     --sweep-dir /path/to/grpo-sweep \
     --ablation-dir /path/to/grpo-ablation \
+    --predictors-dir data \
     --output comparison.json
 ```
 
