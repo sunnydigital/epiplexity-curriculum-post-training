@@ -100,15 +100,26 @@ def generate_with_entropy(
     # Compute entropy from the sampling distribution (with temperature applied)
     entropies_per_step = []
     for step_logits in outputs.scores:
-        scaled = step_logits / temperature
+        # Cast to float32 before softmax — bf16 softmax underflows on vocab tail
+        # producing log_softmax = -inf, then p * logp = 0 * -inf = NaN.
+        scaled = step_logits.float() / temperature
         logprobs = torch.log_softmax(scaled, dim=-1)
         probs = logprobs.exp()
-        # H = -sum(p * log p), nats per token
-        entropy = -(probs * logprobs).sum(dim=-1)  # [num_generations]
+        # H = -sum(p * log p). Use xlogy semantics: treat 0 * log(0) = 0.
+        plogp = torch.where(probs > 0, probs * logprobs, torch.zeros_like(probs))
+        entropy = -plogp.sum(dim=-1)  # [num_generations]
         entropies_per_step.append(entropy)
 
     # Stack to [num_generations, max_new_tokens]
     entropy_matrix = torch.stack(entropies_per_step, dim=1)
+
+    if not torch.isfinite(entropy_matrix).all():
+        n_bad = (~torch.isfinite(entropy_matrix)).sum().item()
+        raise RuntimeError(
+            f"Non-finite entropy values encountered ({n_bad} tokens). "
+            f"This usually indicates top-p/top-k filtering produced -inf logits "
+            f"not masked out of the entropy computation."
+        )
 
     # Decode completions + figure out actual generation length per completion
     # (generation may have ended early via EOS)
