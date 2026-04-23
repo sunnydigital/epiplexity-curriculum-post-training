@@ -1,0 +1,281 @@
+{
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "temperature": 0.7,
+  "num_generations": 8,
+  "max_samples": 100,
+  "top_pct": 0.2,
+  "per_dataset": {
+    "gsm8k": {
+      "category": "math",
+      "n_prompts": 100,
+      "num_generations": 8,
+      "success_rate": 0.2075,
+      "successful_rollouts": {
+        "n": 166,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 256.0,
+        "top_pct": 0.2
+      },
+      "failed_rollouts": {
+        "n": 4,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 256.0,
+        "top_pct": 0.2
+      },
+      "all_rollouts": {
+        "n": 800,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 256.0,
+        "top_pct": 0.2
+      },
+      "elapsed_seconds": 514.4
+    },
+    "math": {
+      "category": "math",
+      "n_prompts": 100,
+      "num_generations": 8,
+      "success_rate": 0.2825,
+      "successful_rollouts": {
+        "n": 226,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 253.94247787610618,
+        "top_pct": 0.2
+      },
+      "failed_rollouts": {
+        "n": 242,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 253.81404958677686,
+        "top_pct": 0.2
+      },
+      "all_rollouts": {
+        "n": 800,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 254.64,
+        "top_pct": 0.2
+      },
+      "elapsed_seconds": 514.2
+    },
+    "humaneval": {
+      "category": "code",
+      "n_prompts": 100,
+      "num_generations": 8,
+      "success_rate": 0.20125,
+      "successful_rollouts": {
+        "n": 161,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 256.0,
+        "top_pct": 0.2
+      },
+      "failed_rollouts": {
+        "n": 391,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 256.0,
+        "top_pct": 0.2
+      },
+      "all_rollouts": {
+        "n": 800,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 256.0,
+        "top_pct": 0.2
+      },
+      "elapsed_seconds": 514.9
+    },
+    "mbpp": {
+      "category": "code",
+      "n_prompts": 100,
+      "num_generations": 8,
+      "success_rate": 0.06875,
+      "successful_rollouts": {
+        "n": 55,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 256.0,
+        "top_pct": 0.2
+      },
+      "failed_rollouts": {
+        "n": 526,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 256.0,
+        "top_pct": 0.2
+      },
+      "all_rollouts": {
+        "n": 800,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 256.0,
+        "top_pct": 0.2
+      },
+      "elapsed_seconds": 519.6
+    },
+    "mmlu": {
+      "category": "logical",
+      "n_prompts": 100,
+      "num_generations": 8,
+      "success_rate": 0.5375,
+      "successful_rollouts": {
+        "n": 430,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 236.2325581395349,
+        "top_pct": 0.2
+      },
+      "failed_rollouts": {
+        "n": 370,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 240.44324324324324,
+        "top_pct": 0.2
+      },
+      "all_rollouts": {
+        "n": 800,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 238.18,
+        "top_pct": 0.2
+      },
+      "elapsed_seconds": 474.9
+    },
+    "arc": {
+      "category": "logical",
+      "n_prompts": 100,
+      "num_generations": 8,
+      "success_rate": 0.745,
+      "successful_rollouts": {
+        "n": 596,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 230.46644295302013,
+        "top_pct": 0.2
+      },
+      "failed_rollouts": {
+        "n": 204,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 246.36274509803923,
+        "top_pct": 0.2
+      },
+      "all_rollouts": {
+        "n": 800,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 234.52,
+        "top_pct": 0.2
+      },
+      "elapsed_seconds": 468.2
+    },
+    "triviaqa": {
+      "category": "qa",
+      "n_prompts": 100,
+      "num_generations": 8,
+      "success_rate": 0.2725,
+      "successful_rollouts": {
+        "n": 218,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 210.53669724770643,
+        "top_pct": 0.2
+      },
+      "failed_rollouts": {
+        "n": 582,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 224.49312714776633,
+        "top_pct": 0.2
+      },
+      "all_rollouts": {
+        "n": 800,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 220.69,
+        "top_pct": 0.2
+      },
+      "elapsed_seconds": 437.9
+    },
+    "boolq": {
+      "category": "qa",
+      "n_prompts": 100,
+      "num_generations": 8,
+      "success_rate": 0.71375,
+      "successful_rollouts": {
+        "n": 571,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 215.28196147110333,
+        "top_pct": 0.2
+      },
+      "failed_rollouts": {
+        "n": 229,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 233.4759825327511,
+        "top_pct": 0.2
+      },
+      "all_rollouts": {
+        "n": 800,
+        "mean_entropy": NaN,
+        "mean_top_pct_entropy": NaN,
+        "forking_density": 0.0,
+        "global_threshold_nats": NaN,
+        "mean_completion_length": 220.49,
+        "top_pct": 0.2
+      },
+      "elapsed_seconds": 437.4
+    }
+  }
+}
