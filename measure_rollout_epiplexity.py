@@ -215,6 +215,7 @@ def compute_grpo_surrogate(
     full_ids: torch.Tensor,           # [G, T]
     completion_mask: torch.Tensor,    # [G, T] bool
     advantages: torch.Tensor,         # [G]
+    pad_token_id: int,
 ) -> tuple[torch.Tensor, int]:
     """
     Per-token NLL of the *sampled* tokens, weighted by the per-completion
@@ -224,7 +225,7 @@ def compute_grpo_surrogate(
 
     Returns (mean_loss_nats_per_token, n_completion_tokens).
     """
-    attn = (full_ids != 0).long() if full_ids.min() >= 0 else torch.ones_like(full_ids)
+    attn = (full_ids != pad_token_id).long()
     outputs = model(input_ids=full_ids, attention_mask=attn)
     logits = outputs.logits[:, :-1, :]            # [G, T-1, V]
     targets = full_ids[:, 1:]                     # [G, T-1]
@@ -359,6 +360,7 @@ def estimate_rollout_epiplexity(
             for r in chunk_rollouts:
                 loss, n_tok = compute_grpo_surrogate(
                     policy, r["full_ids"], r["comp_mask"], r["advantages"],
+                    pad_token_id=tokenizer.pad_token_id,
                 )
                 # Weight by completion-token count for token-level integration
                 chunk_loss_nats += loss.item() * n_tok
@@ -379,6 +381,7 @@ def estimate_rollout_epiplexity(
         for r in chunk_rollouts:
             loss, _ = compute_grpo_surrogate(
                 policy, r["full_ids"], r["comp_mask"], r["advantages"],
+                pad_token_id=tokenizer.pad_token_id,
             )
             loss.backward()
             torch.nn.utils.clip_grad_norm_(
@@ -437,6 +440,14 @@ def main() -> None:
     device = get_device(args.device)
     print(f"Using device: {device}")
     print(f"Rollout Epiplexity (Finzi-style K_auc on GRPO surrogate)")
+
+    # Seed global RNGs so rollout sampling is reproducible across resubmits.
+    # (np.random is already seeded per-dataset inside estimate_rollout_epiplexity;
+    # this covers torch's sampling path inside model.generate.)
+    torch.manual_seed(args.seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(args.seed)
+    np.random.seed(args.seed)
 
     print(f"\nLoading policy model: {args.model}")
     tokenizer = AutoTokenizer.from_pretrained(args.model)
