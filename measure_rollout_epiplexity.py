@@ -464,9 +464,62 @@ def main() -> None:
         if missing:
             print(f"Warning: unknown datasets ignored: {missing}")
 
+    out_path = Path(args.output)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Resumability: if output JSON already exists, pick up where a previous
+    # (possibly killed) run left off. Datasets with a non-error result are
+    # skipped so SLURM time-limit kills only cost ONE dataset of compute.
     per_dataset: dict[str, dict] = {}
+    if out_path.exists():
+        try:
+            with open(out_path) as f:
+                prev = json.load(f)
+            if prev.get("model") == args.model:
+                per_dataset = {
+                    k: v for k, v in prev.get("per_dataset", {}).items()
+                    if isinstance(v, dict) and "error" not in v
+                    and v.get("rollout_epiplexity_per_token") is not None
+                }
+                if per_dataset:
+                    print(f"Resuming from {out_path}: "
+                          f"{len(per_dataset)} datasets already complete "
+                          f"({list(per_dataset.keys())})")
+            else:
+                print(f"Warning: existing {out_path} is for a different model "
+                      f"({prev.get('model')}); ignoring and starting fresh.")
+        except (json.JSONDecodeError, OSError) as e:
+            print(f"Warning: could not parse existing {out_path} ({e}); "
+                  f"starting fresh.")
+
+    def save_checkpoint():
+        """Write the current per_dataset dict so a time-limit kill keeps
+        prior datasets' results on disk."""
+        output = {
+            "model": args.model,
+            "method": "rollout_epiplexity",
+            "reference": "arXiv:2601.03220 (Finzi et al., 2026), GRPO-native adaptation",
+            "temperature": args.temperature,
+            "num_chunks": args.num_chunks,
+            "prompts_per_chunk": args.prompts_per_chunk,
+            "num_generations": args.num_generations,
+            "lr": args.lr,
+            "lora_r": args.lora_r,
+            "max_prompt_length": args.max_prompt_length,
+            "max_new_tokens": args.max_new_tokens,
+            "seed": args.seed,
+            "per_dataset": per_dataset,
+        }
+        tmp = out_path.with_suffix(out_path.suffix + ".tmp")
+        with open(tmp, "w") as f:
+            json.dump(output, f, indent=2)
+        tmp.replace(out_path)
 
     for ds_name in selected:
+        if ds_name in per_dataset:
+            print(f"\n[SKIP] {ds_name}: already complete in {out_path}")
+            continue
+
         cfg = EVAL_REGISTRY[ds_name]
         print(f"\n{'='*60}")
         print(f"Dataset: {ds_name} ({cfg['category']})")
@@ -481,6 +534,7 @@ def main() -> None:
         except Exception as e:
             print(f"  Failed to load {ds_name}: {e}")
             per_dataset[ds_name] = {"error": str(e)}
+            save_checkpoint()
             continue
 
         formatted = raw.map(
@@ -509,39 +563,26 @@ def main() -> None:
         result["elapsed_seconds"] = round(time.time() - start, 1)
         per_dataset[ds_name] = result
 
+        # Persist after EVERY dataset so a SLURM kill only loses one dataset
+        # of in-flight work rather than the entire run.
+        save_checkpoint()
+
         print(
             f"  rollout_epiplexity={result['rollout_epiplexity_per_token']:.4f} bits/tok  "
             f"K_auc={result['k_auc_bits']:.1f}  "
             f"L:{result['initial_surrogate_nats']:+.3f}→{result['final_surrogate_nats']:+.3f}  "
             f"|A|={result['mean_advantage_magnitude']:.3f}  "
             f"zero_var={result['fraction_zero_variance_groups']:.2f}  "
-            f"time={result['elapsed_seconds']:.1f}s"
+            f"time={result['elapsed_seconds']:.1f}s  "
+            f"[checkpointed to {out_path.name}]"
         )
 
         del base_model
         if device.type == "cuda":
             torch.cuda.empty_cache()
 
-    output = {
-        "model": args.model,
-        "method": "rollout_epiplexity",
-        "reference": "arXiv:2601.03220 (Finzi et al., 2026), GRPO-native adaptation",
-        "temperature": args.temperature,
-        "num_chunks": args.num_chunks,
-        "prompts_per_chunk": args.prompts_per_chunk,
-        "num_generations": args.num_generations,
-        "lr": args.lr,
-        "lora_r": args.lora_r,
-        "max_prompt_length": args.max_prompt_length,
-        "max_new_tokens": args.max_new_tokens,
-        "seed": args.seed,
-        "per_dataset": per_dataset,
-    }
-
-    out_path = Path(args.output)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(out_path, "w") as f:
-        json.dump(output, f, indent=2)
+    # Final write (idempotent with the per-dataset checkpoint above).
+    save_checkpoint()
     print(f"\nResults saved to {out_path}")
 
     # Summary
