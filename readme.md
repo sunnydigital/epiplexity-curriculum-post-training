@@ -20,6 +20,8 @@ evaluate.py                     →  outputs/eval/*_results.json
 compare_results.py              →  comparison.json (aggregated)
                                            ↓
 measure_reward_variance.py      →  data/reward_variance_3b.json
+                                           ↓
+measure_rollout_epiplexity.py   →  data/rollout_epiplexity_3b.json
 ```
 
 ## Project Structure
@@ -46,12 +48,14 @@ measure_reward_variance.py      →  data/reward_variance_3b.json
 │   ├── slurm_ablation.sbatch        # Single-dataset ablation runs
 │   ├── slurm_probe.sbatch           # Epiplexity probe (1.5B)
 │   ├── slurm_probe_3b.sbatch        # Epiplexity probe (3B)
-│   └── slurm_reward_variance.sbatch # Reward variance measurement
+│   ├── slurm_reward_variance.sbatch # Reward variance measurement
+│   └── slurm_rollout_epiplexity.sbatch # Rollout epiplexity (GRPO-native K_auc)
 ├── probe_epiplexity.py              # Stage 1: measure per-dataset epiplexity via K_auc
 ├── post_training.py                 # Stage 2: GRPO training with curriculum scheduler
 ├── evaluate.py                      # Stage 3: evaluate on all 8 benchmarks
-├── compare_results.py               # Stage 4: aggregate results across strategies
+├── compare_results.py               # Stage 4: aggregate results + Spearman vs predictors
 ├── measure_reward_variance.py       # Reward variance analysis
+├── measure_rollout_epiplexity.py    # Rollout epiplexity: prequential K_auc on GRPO surrogate
 ├── RESULTS.md                       # Full experiment writeup & analysis
 └── pyproject.toml                   # Python dependencies (UV)
 ```
@@ -198,7 +202,22 @@ python measure_reward_variance.py \
     --num-generations 8 \
     --max-samples 200 \
     --output data/reward_variance_3b.json
+
+# 6. (Optional) Measure rollout epiplexity — GRPO-native K_auc
+python measure_rollout_epiplexity.py \
+    --model Qwen/Qwen2.5-3B-Instruct \
+    --num-chunks 50 \
+    --prompts-per-chunk 16 \
+    --num-generations 8 \
+    --output data/rollout_epiplexity_3b.json
 ```
+
+**Rollout epiplexity** applies the prequential coding procedure to the
+advantage-weighted GRPO surrogate loss on policy-sampled rollouts, instead
+of teacher-forcing CE on dataset tokens. It is the first measurement that
+combines (a) MDL-theoretic trajectory integration with (b) advantage-weighted
+rollout conditioning — closing the conceptual gap that makes vanilla
+epiplexity an off-objective predictor of GRPO transfer.
 
 For cluster runs, see the SLURM scripts in `environment/`.
 

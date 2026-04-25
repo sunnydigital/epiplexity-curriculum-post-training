@@ -29,6 +29,7 @@ echo "=== Aggregating evaluation results ==="
 python compare_results.py \
     --sweep-dir /gpfs/scratch/gs4342/grpo-sweep \
     --ablation-dir /gpfs/scratch/gs4342/grpo-ablation \
+    --predictors-dir "$WORK/data" \
     --output "$WORK/comparison.json"
 
 echo "=== Done. Results in $WORK/comparison.json ==="
