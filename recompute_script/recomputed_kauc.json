@@ -1,0 +1,476 @@
+{
+  "transfer_scores": {
+    "arc": 0.4827903874442441,
+    "boolq": 0.45901187482205563,
+    "gsm8k": 0.4086809635095378,
+    "humaneval": 0.48054789669735215,
+    "math": 0.48761345734079903,
+    "mbpp": 0.4801134098889628,
+    "mmlu": 0.4603891999620385,
+    "triviaqa": 0.4636017308057322
+  },
+  "by_scale": {
+    "1.5b": {
+      "rollout_file": "data\\rollout_epiplexity_1.5b.json",
+      "datasets": [
+        "gsm8k",
+        "math",
+        "humaneval",
+        "mbpp",
+        "mmlu",
+        "arc",
+        "triviaqa",
+        "boolq"
+      ],
+      "per_anchor": {
+        "last (published)": {
+          "per_dataset_kauc_bits": {
+            "gsm8k": 0.0,
+            "math": 26340.024707668897,
+            "humaneval": 30207.955111474603,
+            "mbpp": 19486.012799026175,
+            "mmlu": 2585.7279698550224,
+            "arc": 75842.90062975098,
+            "triviaqa": 13380.158552340707,
+            "boolq": 27553.899280916543
+          },
+          "per_dataset_per_token": {
+            "gsm8k": 0.0,
+            "math": 0.01775380517317958,
+            "humaneval": 0.019741838939524584,
+            "mbpp": 0.013088129410944678,
+            "mmlu": 0.0028146980247743675,
+            "arc": 0.0892003916831237,
+            "triviaqa": 0.016678997367717305,
+            "boolq": 0.04337318370928581
+          },
+          "spearman_kauc_vs_transfer": 0.6428571428571429,
+          "spearman_pertok_vs_transfer": 0.5238095238095238,
+          "spearman_kauc_vs_transfer_no_boolq": 0.8928571428571428,
+          "spearman_pertok_vs_transfer_no_boolq": 0.857142857142857,
+          "n_datasets": 8
+        },
+        "mean_last_3": {
+          "per_dataset_kauc_bits": {
+            "gsm8k": 2142.1916695967657,
+            "math": 14562.713156406902,
+            "humaneval": 9503.452700591792,
+            "mbpp": 15612.58065459894,
+            "mmlu": 747.4887621723389,
+            "arc": 25537.74682124547,
+            "triviaqa": 5964.611809178551,
+            "boolq": 17261.51340662527
+          },
+          "per_dataset_per_token": {
+            "gsm8k": 0.0014249018020513328,
+            "math": 0.009815616159861543,
+            "humaneval": 0.006210802151026986,
+            "mbpp": 0.010486469353874912,
+            "mmlu": 0.0008136800030613756,
+            "arc": 0.030035468056267334,
+            "triviaqa": 0.007435169342394755,
+            "boolq": 0.02717171840010274
+          },
+          "spearman_kauc_vs_transfer": 0.4523809523809524,
+          "spearman_pertok_vs_transfer": 0.40476190476190477,
+          "spearman_kauc_vs_transfer_no_boolq": 0.7857142857142856,
+          "spearman_pertok_vs_transfer_no_boolq": 0.7142857142857142,
+          "n_datasets": 8
+        },
+        "mean_last_5": {
+          "per_dataset_kauc_bits": {
+            "gsm8k": 2629.625224656549,
+            "math": 8617.336215917032,
+            "humaneval": 5251.733792034351,
+            "mbpp": 7004.396796475346,
+            "mmlu": 1598.8837636253716,
+            "arc": 8328.502128705906,
+            "triviaqa": 11501.54308982367,
+            "boolq": 17688.239574307372
+          },
+          "per_dataset_per_token": {
+            "gsm8k": 0.001749123467573779,
+            "math": 0.0058082902346189656,
+            "humaneval": 0.0034321715022748445,
+            "mbpp": 0.004704628528338909,
+            "mmlu": 0.001740467297328446,
+            "arc": 0.009795322249619709,
+            "triviaqa": 0.014337214777346338,
+            "boolq": 0.027843437211140642
+          },
+          "spearman_kauc_vs_transfer": 0.19047619047619047,
+          "spearman_pertok_vs_transfer": 0.16666666666666666,
+          "spearman_kauc_vs_transfer_no_boolq": 0.5714285714285714,
+          "spearman_pertok_vs_transfer_no_boolq": 0.5357142857142857,
+          "n_datasets": 8
+        },
+        "mean_last_10": {
+          "per_dataset_kauc_bits": {
+            "gsm8k": 7629.470216308046,
+            "math": 6526.14459074293,
+            "humaneval": 11325.113366916612,
+            "mbpp": 16715.184259482106,
+            "mmlu": 2249.3580268774704,
+            "arc": 15579.509814461522,
+            "triviaqa": 2116.5672485529526,
+            "boolq": 13743.038841050537
+          },
+          "per_dataset_per_token": {
+            "gsm8k": 0.005074824075831015,
+            "math": 0.004398777179670449,
+            "humaneval": 0.007401314098768559,
+            "mbpp": 0.011227052808197913,
+            "mmlu": 0.002448542023396749,
+            "arc": 0.018323381175322548,
+            "triviaqa": 0.0026384006907777366,
+            "boolq": 0.021633212138130003
+          },
+          "spearman_kauc_vs_transfer": 0.16666666666666666,
+          "spearman_pertok_vs_transfer": 0.047619047619047616,
+          "spearman_kauc_vs_transfer_no_boolq": 0.3214285714285714,
+          "spearman_pertok_vs_transfer_no_boolq": 0.4285714285714285,
+          "n_datasets": 8
+        },
+        "median_last_5": {
+          "per_dataset_kauc_bits": {
+            "gsm8k": 5313.907786546144,
+            "math": 8334.80060228041,
+            "humaneval": 11304.804013874696,
+            "mbpp": 5984.130473775015,
+            "mmlu": 2538.0159212057247,
+            "arc": 13451.50735586617,
+            "triviaqa": 13380.158552340707,
+            "boolq": 23216.066481003756
+          },
+          "per_dataset_per_token": {
+            "gsm8k": 0.0035346028501779597,
+            "math": 0.0056178544892216235,
+            "humaneval": 0.007388041304392381,
+            "mbpp": 0.0040193483839166535,
+            "mmlu": 0.0027627610033023656,
+            "arc": 0.015820593818388372,
+            "triviaqa": 0.016678997367717305,
+            "boolq": 0.036544908080758345
+          },
+          "spearman_kauc_vs_transfer": 0.21428571428571427,
+          "spearman_pertok_vs_transfer": 0.14285714285714285,
+          "spearman_kauc_vs_transfer_no_boolq": 0.6071428571428571,
+          "spearman_pertok_vs_transfer_no_boolq": 0.49999999999999994,
+          "n_datasets": 8
+        },
+        "min_last_5": {
+          "per_dataset_kauc_bits": {
+            "gsm8k": 11117.99645462675,
+            "math": 26340.024707668897,
+            "humaneval": 30207.955111474603,
+            "mbpp": 25384.226108784314,
+            "mmlu": 4936.871700517663,
+            "arc": 75842.90062975098,
+            "triviaqa": 26425.842074699005,
+            "boolq": 36266.22520442614
+          },
+          "per_dataset_per_token": {
+            "gsm8k": 0.007395254779596826,
+            "math": 0.01775380517317958,
+            "humaneval": 0.019741838939524584,
+            "mbpp": 0.01704976999322577,
+            "mmlu": 0.00537403902731139,
+            "arc": 0.0892003916831237,
+            "triviaqa": 0.03294105586861769,
+            "boolq": 0.057087442767976296
+          },
+          "spearman_kauc_vs_transfer": 0.38095238095238093,
+          "spearman_pertok_vs_transfer": 0.3333333333333333,
+          "spearman_kauc_vs_transfer_no_boolq": 0.6785714285714285,
+          "spearman_pertok_vs_transfer_no_boolq": 0.6071428571428571,
+          "n_datasets": 8
+        },
+        "min_last_10": {
+          "per_dataset_kauc_bits": {
+            "gsm8k": 55045.577842756975,
+            "math": 26340.024707668897,
+            "humaneval": 87010.12501598737,
+            "mbpp": 55092.23349671764,
+            "mmlu": 10593.400134828906,
+            "arc": 75842.90062975098,
+            "triviaqa": 26425.842074699005,
+            "boolq": 47855.47002903993
+          },
+          "per_dataset_per_token": {
+            "gsm8k": 0.03661415744272099,
+            "math": 0.01775380517317958,
+            "humaneval": 0.056863825036638505,
+            "mbpp": 0.037003685103761036,
+            "mmlu": 0.011531461461825486,
+            "arc": 0.0892003916831237,
+            "triviaqa": 0.03294105586861769,
+            "boolq": 0.0753303215600172
+          },
+          "spearman_kauc_vs_transfer": 0.21428571428571427,
+          "spearman_pertok_vs_transfer": 0.09523809523809523,
+          "spearman_kauc_vs_transfer_no_boolq": 0.2857142857142857,
+          "spearman_pertok_vs_transfer_no_boolq": 0.3214285714285714,
+          "n_datasets": 8
+        },
+        "min_overall": {
+          "per_dataset_kauc_bits": {
+            "gsm8k": 55045.577842756975,
+            "math": 61883.8610716824,
+            "humaneval": 117730.22903025807,
+            "mbpp": 61407.145051957596,
+            "mmlu": 72311.58573206553,
+            "arc": 75842.90062975098,
+            "triviaqa": 43543.09360909215,
+            "boolq": 68154.29125288704
+          },
+          "per_dataset_per_token": {
+            "gsm8k": 0.03661415744272099,
+            "math": 0.04171119902218172,
+            "humaneval": 0.07694036922564931,
+            "mbpp": 0.04124520852397458,
+            "mmlu": 0.07871488412594273,
+            "arc": 0.0892003916831237,
+            "triviaqa": 0.05427851552336547,
+            "boolq": 0.10728313132562597
+          },
+          "spearman_kauc_vs_transfer": 0.38095238095238093,
+          "spearman_pertok_vs_transfer": 0.047619047619047616,
+          "spearman_kauc_vs_transfer_no_boolq": 0.49999999999999994,
+          "spearman_pertok_vs_transfer_no_boolq": 0.3214285714285714,
+          "n_datasets": 8
+        }
+      }
+    },
+    "3b": {
+      "rollout_file": "data\\rollout_epiplexity_3b.json",
+      "datasets": [
+        "gsm8k",
+        "math",
+        "humaneval",
+        "mbpp",
+        "mmlu",
+        "arc",
+        "triviaqa",
+        "boolq"
+      ],
+      "per_anchor": {
+        "last (published)": {
+          "per_dataset_kauc_bits": {
+            "gsm8k": 0.0,
+            "math": 2733.4909167045803,
+            "humaneval": 10702.507173162245,
+            "mbpp": 14139.753545679161,
+            "mmlu": 6715.501174281177,
+            "arc": 0.0,
+            "triviaqa": 3856.877859389631,
+            "boolq": 3761.980054356562
+          },
+          "per_dataset_per_token": {
+            "gsm8k": 0.0,
+            "math": 0.0016821824176765315,
+            "humaneval": 0.006671021869070567,
+            "mbpp": 0.008902871097325793,
+            "mmlu": 0.017319553965872005,
+            "arc": 0.0,
+            "triviaqa": 0.0046252803010900165,
+            "boolq": 0.005069630373683819
+          },
+          "spearman_kauc_vs_transfer": 0.047905050476530354,
+          "spearman_pertok_vs_transfer": -0.11976262619132588,
+          "spearman_kauc_vs_transfer_no_boolq": -0.018018749253911177,
+          "spearman_pertok_vs_transfer_no_boolq": -0.19820624179302296,
+          "n_datasets": 8
+        },
+        "mean_last_3": {
+          "per_dataset_kauc_bits": {
+            "gsm8k": 649.3058366571212,
+            "math": 1125.2792796039437,
+            "humaneval": 13232.316935330566,
+            "mbpp": 5412.104662922407,
+            "mmlu": 21451.565100486012,
+            "arc": 258.5922754845069,
+            "triviaqa": 2306.186792404842,
+            "boolq": 5743.603583273463
+          },
+          "per_dataset_per_token": {
+            "gsm8k": 0.0004472354626755786,
+            "math": 0.0006924936196267023,
+            "humaneval": 0.008247887548762201,
+            "mbpp": 0.0034076456865797314,
+            "mmlu": 0.05532446942800996,
+            "arc": 0.0008463810906548583,
+            "triviaqa": 0.002765646393384143,
+            "boolq": 0.007740058894369289
+          },
+          "spearman_kauc_vs_transfer": -0.23809523809523808,
+          "spearman_pertok_vs_transfer": -0.11904761904761904,
+          "spearman_kauc_vs_transfer_no_boolq": -0.24999999999999997,
+          "spearman_pertok_vs_transfer_no_boolq": -0.10714285714285712,
+          "n_datasets": 8
+        },
+        "mean_last_5": {
+          "per_dataset_kauc_bits": {
+            "gsm8k": 702.0881175724744,
+            "math": 483.4012238631943,
+            "humaneval": 8011.6043099445915,
+            "mbpp": 7937.600750760288,
+            "mmlu": 14645.554297716819,
+            "arc": 650.06571798503,
+            "triviaqa": 1380.8248306323826,
+            "boolq": 3350.8814940626175
+          },
+          "per_dataset_per_token": {
+            "gsm8k": 0.00048359137770598055,
+            "math": 0.00029748371743130433,
+            "humaneval": 0.004993744614533058,
+            "mbpp": 0.004997784160647546,
+            "mmlu": 0.03777148740452214,
+            "arc": 0.002127686646303044,
+            "triviaqa": 0.0016559253679323523,
+            "boolq": 0.004515635477982456
+          },
+          "spearman_kauc_vs_transfer": -0.35714285714285715,
+          "spearman_pertok_vs_transfer": -0.16666666666666666,
+          "spearman_kauc_vs_transfer_no_boolq": -0.49999999999999994,
+          "spearman_pertok_vs_transfer_no_boolq": -0.24999999999999997,
+          "n_datasets": 8
+        },
+        "mean_last_10": {
+          "per_dataset_kauc_bits": {
+            "gsm8k": 1590.170939322859,
+            "math": 675.636434128868,
+            "humaneval": 5055.916234657354,
+            "mbpp": 11643.1281262379,
+            "mmlu": 12064.407648956449,
+            "arc": 1823.8689502837374,
+            "triviaqa": 1758.8132970766194,
+            "boolq": 1607.1384341491378
+          },
+          "per_dataset_per_token": {
+            "gsm8k": 0.0010952940750429006,
+            "math": 0.00041578471078419934,
+            "humaneval": 0.0031514230473178514,
+            "mbpp": 0.007330910580773178,
+            "mmlu": 0.031114603946852278,
+            "arc": 0.005969583540190351,
+            "triviaqa": 0.002109220149779665,
+            "boolq": 0.002165773795382512
+          },
+          "spearman_kauc_vs_transfer": 0.0,
+          "spearman_pertok_vs_transfer": -0.023809523809523808,
+          "spearman_kauc_vs_transfer_no_boolq": -0.24999999999999997,
+          "spearman_pertok_vs_transfer_no_boolq": -0.21428571428571425,
+          "n_datasets": 8
+        },
+        "median_last_5": {
+          "per_dataset_kauc_bits": {
+            "gsm8k": 1250.437369304198,
+            "math": 335.239452048675,
+            "humaneval": 10702.507173162245,
+            "mbpp": 14139.753545679161,
+            "mmlu": 6715.501174281177,
+            "arc": 3723.7287669769007,
+            "triviaqa": 3583.7926210610453,
+            "boolq": 3761.980054356562
+          },
+          "per_dataset_per_token": {
+            "gsm8k": 0.0008612889394107111,
+            "math": 0.0002063053908471218,
+            "humaneval": 0.006671021869070567,
+            "mbpp": 0.008902871097325793,
+            "mmlu": 0.017319553965872005,
+            "arc": 0.012187887705429964,
+            "triviaqa": 0.004297788526808222,
+            "boolq": 0.005069630373683819
+          },
+          "spearman_kauc_vs_transfer": -0.047619047619047616,
+          "spearman_pertok_vs_transfer": 0.023809523809523808,
+          "spearman_kauc_vs_transfer_no_boolq": -0.07142857142857142,
+          "spearman_pertok_vs_transfer_no_boolq": -0.14285714285714285,
+          "n_datasets": 8
+        },
+        "min_last_5": {
+          "per_dataset_kauc_bits": {
+            "gsm8k": 2739.6517237016606,
+            "math": 6972.042869879436,
+            "humaneval": 59875.25044604977,
+            "mbpp": 28652.99272220351,
+            "mmlu": 57928.399800404964,
+            "arc": 8039.428146412367,
+            "triviaqa": 9435.2754370533,
+            "boolq": 8194.136407525648
+          },
+          "per_dataset_per_token": {
+            "gsm8k": 0.0018870451134827644,
+            "math": 0.004290575051603777,
+            "humaneval": 0.0373210780127566,
+            "mbpp": 0.018040901486316485,
+            "mmlu": 0.1493997276542975,
+            "arc": 0.0263133148507738,
+            "triviaqa": 0.011315057205692142,
+            "boolq": 0.01104238784296413
+          },
+          "spearman_kauc_vs_transfer": 0.07142857142857142,
+          "spearman_pertok_vs_transfer": 0.23809523809523808,
+          "spearman_kauc_vs_transfer_no_boolq": 0.0,
+          "spearman_pertok_vs_transfer_no_boolq": 0.07142857142857142,
+          "n_datasets": 8
+        },
+        "min_last_10": {
+          "per_dataset_kauc_bits": {
+            "gsm8k": 14806.267610739324,
+            "math": 8303.6233507441,
+            "humaneval": 59875.25044604977,
+            "mbpp": 28652.99272220351,
+            "mmlu": 57928.399800404964,
+            "arc": 19059.866904929942,
+            "triviaqa": 14799.53569126988,
+            "boolq": 17007.06179382707
+          },
+          "per_dataset_per_token": {
+            "gsm8k": 0.010198411244044083,
+            "math": 0.005110025834828707,
+            "humaneval": 0.0373210780127566,
+            "mbpp": 0.018040901486316485,
+            "mmlu": 0.1493997276542975,
+            "arc": 0.06238357626307967,
+            "triviaqa": 0.017748034393016025,
+            "boolq": 0.02291865341956207
+          },
+          "spearman_kauc_vs_transfer": -0.023809523809523808,
+          "spearman_pertok_vs_transfer": -0.023809523809523808,
+          "spearman_kauc_vs_transfer_no_boolq": -0.17857142857142855,
+          "spearman_pertok_vs_transfer_no_boolq": -0.10714285714285712,
+          "n_datasets": 8
+        },
+        "min_overall": {
+          "per_dataset_kauc_bits": {
+            "gsm8k": 19732.613829505608,
+            "math": 14476.249065738235,
+            "humaneval": 59875.25044604977,
+            "mbpp": 47446.42305467159,
+            "mmlu": 57928.399800404964,
+            "arc": 34959.324806637305,
+            "triviaqa": 24113.306242547027,
+            "boolq": 20154.535146077575
+          },
+          "per_dataset_per_token": {
+            "gsm8k": 0.013591629980214922,
+            "math": 0.008908641877489349,
+            "humaneval": 0.0373210780127566,
+            "mbpp": 0.029873886211687767,
+            "mmlu": 0.1493997276542975,
+            "arc": 0.11442302908298548,
+            "triviaqa": 0.028917379399578384,
+            "boolq": 0.027160176839775618
+          },
+          "spearman_kauc_vs_transfer": 0.09523809523809523,
+          "spearman_pertok_vs_transfer": 0.09523809523809523,
+          "spearman_kauc_vs_transfer_no_boolq": -0.10714285714285712,
+          "spearman_pertok_vs_transfer_no_boolq": -0.10714285714285712,
+          "n_datasets": 8
+        }
+      }
+    }
+  }
+}
