@@ -8,7 +8,7 @@ categorises them by strategy/dataset, and writes a unified JSON.
 When --predictors-dir is supplied, also computes Spearman correlations
 between each predictor (epiplexity 1.5B/3B, reward variance 1.5B/3B,
 rollout epiplexity 1.5B/3B) and the per-source ablation MIXED transfer
-score, producing the predictor-comparison table consumed by RESULTS.md.
+score, producing the predictor-comparison table consumed by findings/RESULTS.md.
 
 Usage:
     python compare_results.py \

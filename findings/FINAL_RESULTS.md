@@ -182,7 +182,7 @@ zero or positive.
 
 The full per-chunk loss curves are persisted, so this test does not require
 re-running any GPU-bound work. The script
-[recompute_script/recompute_kauc.py](../recompute_script/recompute_kauc.py)
+[recompute_script/recompute_kauc.py](recompute_script/recompute_kauc.py)
 re-derives K_auc from the existing JSON files under eight anchoring
 strategies and computes Spearman ρ against ablation transfer.
 
@@ -255,7 +255,7 @@ has no within-group spread to exploit.
 ### 6.2 Per-dataset K_auc ranking inversion
 
 The script
-[recompute_script/inspect_rankings.py](../recompute_script/inspect_rankings.py)
+[recompute_script/inspect_rankings.py](recompute_script/inspect_rankings.py)
 prints K_auc rankings vs transfer rankings under each anchor. The published-
 anchor rankings reveal the mechanism cleanly:
 
@@ -540,14 +540,14 @@ curves; no GPU or training is required.
 
 ```bash
 # From the repo root, with uv installed
-uv run python recompute_script/recompute_kauc.py
-uv run python recompute_script/inspect_rankings.py
+uv run python findings/recompute_script/recompute_kauc.py
+uv run python findings/recompute_script/inspect_rankings.py
 ```
 
 Outputs:
-- `recompute_script/recomputed_kauc.json` — full per-dataset K_auc under
+- `findings/recompute_script/recomputed_kauc.json` — full per-dataset K_auc under
   each anchor, both scales.
-- `recompute_script/correlations.csv` — flat ρ table.
+- `findings/recompute_script/correlations.csv` — flat ρ table.
 
 Caveats inherited from the original measurement:
 - **n = 8.** Even ρ = +0.89 at p = 0.014 is suggestive, not conclusive,

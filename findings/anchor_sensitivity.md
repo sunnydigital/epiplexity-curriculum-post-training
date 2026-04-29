@@ -26,7 +26,7 @@ GPU work.
 
 Spearman ρ between K_auc and ablation transfer score, computed across the
 8 datasets in the suite (n=7 with boolq excluded). All numbers are
-reproducible by running [`recompute_script/recompute_kauc.py`](../recompute_script/recompute_kauc.py).
+reproducible by running [`recompute_script/recompute_kauc.py`](recompute_script/recompute_kauc.py).
 
 | Anchor                        | 1.5B (n=8) | 1.5B − boolq (n=7) | 3B (n=8) | 3B − boolq (n=7) |
 |-------------------------------|-----------:|-------------------:|---------:|-----------------:|
@@ -80,7 +80,7 @@ seeds would dominate this analysis in informativeness.
 ## Source of truth
 
 - **Canonical writeup:** [`FINAL_RESULTS.md`](FINAL_RESULTS.md), §5.
-- **Recomputation script:** [`recompute_script/recompute_kauc.py`](../recompute_script/recompute_kauc.py).
+- **Recomputation script:** [`recompute_script/recompute_kauc.py`](recompute_script/recompute_kauc.py).
 - **Persisted curves:** [`data/rollout_epiplexity_1.5b.json`](../data/rollout_epiplexity_1.5b.json),
   [`data/rollout_epiplexity_3b.json`](../data/rollout_epiplexity_3b.json).
-- **Tabular output:** [`recompute_script/correlations.csv`](../recompute_script/correlations.csv).
+- **Tabular output:** [`recompute_script/correlations.csv`](recompute_script/correlations.csv).

@@ -89,22 +89,22 @@ a tiny GRPO run.
 
 - **Epiplexity** (K_auc per token): learnable structure extractable via
   teacher-forced cross-entropy, prequential coding over 500 dataset-token
-  steps. Implementation: [probe_epiplexity.py](probe_epiplexity.py).
+  steps. Implementation: [probe_epiplexity.py](../probe_epiplexity.py).
 - **Reward variance** (mean within-group Var[r]): variance of GRPO rewards
   across 8 sampled completions per prompt at T=0.7, 200 prompts.
-  Implementation: [measure_reward_variance.py](measure_reward_variance.py).
+  Implementation: [measure_reward_variance.py](../measure_reward_variance.py).
 - **Forking-token entropy** (top-20% mean H on successful rollouts):
   per-step policy entropy at "decision tokens", following Wang et al. 2025
   (arXiv:2506.01939). Bucketed to successful completions only; aggregated
   over the top-20% highest-entropy tokens.
-  Implementation: [measure_forking_entropy.py](measure_forking_entropy.py).
+  Implementation: [measure_forking_entropy.py](../measure_forking_entropy.py).
 - **Rollout epiplexity** (K_auc per token on the GRPO surrogate): a
   GRPO-native adaptation of prequential coding. For each dataset we attach
   a fresh LoRA adapter and run 50 inner-loop chunks of 16 prompts × 8
   generations, alternating *measure* and *train* on the advantage-weighted
   surrogate `L = −E[A · log π(τ)]`. K_auc integrates `(L_i − L_final)`
   over rollout tokens — fast surrogate compression = high learnability.
-  Implementation: [measure_rollout_epiplexity.py](measure_rollout_epiplexity.py).
+  Implementation: [measure_rollout_epiplexity.py](../measure_rollout_epiplexity.py).
 
 ### 4-Predictor Spearman Correlation with Transfer
 

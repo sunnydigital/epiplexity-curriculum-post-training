@@ -26,11 +26,11 @@ Inputs
 
 Outputs
 -------
-- recompute_script/recomputed_kauc.json     (all variants, both scales)
-- recompute_script/correlations.csv         (Spearman table)
+- findings/recompute_script/recomputed_kauc.json     (all variants, both scales)
+- findings/recompute_script/correlations.csv         (Spearman table)
 
 Run (from repo root):
-    python recompute_script/recompute_kauc.py
+    python findings/recompute_script/recompute_kauc.py
 """
 from __future__ import annotations
 

@@ -54,9 +54,9 @@ measure_rollout_epiplexity.py   →  data/rollout_epiplexity_3b.json
 ├── post_training.py                 # Stage 2: GRPO training with curriculum scheduler
 ├── evaluate.py                      # Stage 3: evaluate on all 8 benchmarks
 ├── compare_results.py               # Stage 4: aggregate results + Spearman vs predictors
+├── findings/                        # Writeups, analyses, recompute scripts (RESULTS.md, FINAL_RESULTS.md, anchor sensitivity, recompute_script/)
 ├── measure_reward_variance.py       # Reward variance analysis
 ├── measure_rollout_epiplexity.py    # Rollout epiplexity: prequential K_auc on GRPO surrogate
-├── RESULTS.md                       # Full experiment writeup & analysis
 └── pyproject.toml                   # Python dependencies (UV)
 ```
 
@@ -105,7 +105,7 @@ Six epiplexity-based weighting strategies tested (+ pretrained baseline). All us
 
 ## Results
 
-See [RESULTS.md](RESULTS.md) for the full experiment writeup with tables and analysis.
+See [findings/RESULTS.md](findings/RESULTS.md) for the full experiment writeup with tables and analysis. [findings/FINAL_RESULTS.md](findings/FINAL_RESULTS.md) supersedes it on the post-hoc anchor-sensitivity reanalysis.
 
 ### Epiplexity Scores (1.5B Probe)
 
