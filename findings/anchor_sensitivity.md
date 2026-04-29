@@ -79,7 +79,7 @@ seeds would dominate this analysis in informativeness.
 
 ## Source of truth
 
-- **Canonical writeup:** [`FINAL_RESULTS.md`](../FINAL_RESULTS.md), §5.
+- **Canonical writeup:** [`FINAL_RESULTS.md`](FINAL_RESULTS.md), §5.
 - **Recomputation script:** [`recompute_script/recompute_kauc.py`](../recompute_script/recompute_kauc.py).
 - **Persisted curves:** [`data/rollout_epiplexity_1.5b.json`](../data/rollout_epiplexity_1.5b.json),
   [`data/rollout_epiplexity_3b.json`](../data/rollout_epiplexity_3b.json).

@@ -3,7 +3,7 @@
 This document is a holistic re-reading of the experiments in this repository,
 written after a post-hoc reanalysis of the persisted loss curves under
 alternative integrator anchoring strategies. It supersedes the framing in
-[RESULTS.md](RESULTS.md) on three specific points (called out in §6) without
+[RESULTS.md](../RESULTS.md) on three specific points (called out in §6) without
 changing any of the underlying numerical results.
 
 The shape of the document follows the order in which the analysis was done:
@@ -31,9 +31,9 @@ which datasets a larger training model should over-sample during GRPO?
   baseline.
 
 **Implementation.**
-[probe_epiplexity.py](probe_epiplexity.py) → [data/curriculum.py](data/curriculum.py),
-[data/loader.py](data/loader.py) → [post_training.py](post_training.py) →
-[evaluate.py](evaluate.py) → [compare_results.py](compare_results.py).
+[probe_epiplexity.py](../probe_epiplexity.py) → [data/curriculum.py](../data/curriculum.py),
+[data/loader.py](../data/loader.py) → [post_training.py](../post_training.py) →
+[evaluate.py](../evaluate.py) → [compare_results.py](../compare_results.py).
 
 **Sub-experiments inside Archetype 1.**
 
@@ -85,9 +85,9 @@ chunks of 16 prompts × 8 generations, alternating MEASURE (no-grad surrogate
 Integrate `max(0, L_i − L_final)` × tokens trapezoidally into K_auc.
 
 **Implementation.**
-[measure_rollout_epiplexity.py](measure_rollout_epiplexity.py),
-outputs in [data/rollout_epiplexity_1.5b.json](data/rollout_epiplexity_1.5b.json)
-and [data/rollout_epiplexity_3b.json](data/rollout_epiplexity_3b.json).
+[measure_rollout_epiplexity.py](../measure_rollout_epiplexity.py),
+outputs in [data/rollout_epiplexity_1.5b.json](../data/rollout_epiplexity_1.5b.json)
+and [data/rollout_epiplexity_3b.json](../data/rollout_epiplexity_3b.json).
 
 The same measurement protocol is run independently on the 1.5B and 3B
 models. Unlike Archetype 1, there is no probe-vs-target distinction — each
@@ -95,10 +95,10 @@ model acts as its own measurement instrument, and the question is whether
 the predictor it produces ranks datasets in agreement with Archetype 1's
 ablation transfer scores.
 
-**Other predictors in the comparison.** [RESULTS.md](RESULTS.md) compares
+**Other predictors in the comparison.** [RESULTS.md](../RESULTS.md) compares
 rollout epiplexity against three static baselines: epiplexity (Archetype 1),
-reward variance ([measure_reward_variance.py](measure_reward_variance.py)),
-and forking-token entropy ([measure_forking_entropy.py](measure_forking_entropy.py)).
+reward variance ([measure_reward_variance.py](../measure_reward_variance.py)),
+and forking-token entropy ([measure_forking_entropy.py](../measure_forking_entropy.py)).
 
 ---
 
@@ -139,7 +139,7 @@ the 3B output (`L_initial`, `L_final`) hint at why:
 
 For gsm8k and arc at 3B, the surrogate loss at chunk 50 is *higher* than at
 chunk 0. The integrator's `max(0, …)` clamp in
-[integrate_k_auc](measure_rollout_epiplexity.py#L252-L269) zeros K_auc on
+[integrate_k_auc](../measure_rollout_epiplexity.py#L252-L269) zeros K_auc on
 those datasets. RESULTS.md attributes the 3B negative correlation to "3B
 inner-loop instability at the chosen hyperparameters (lr = 3e-6, lora_r = 16,
 AdamW)."
@@ -151,8 +151,8 @@ This is the framing the rest of the document tests.
 ## 4. The artifact hypothesis: K_auc is sensitive to last-chunk noise
 
 Reading the persisted per-chunk loss curves in
-[data/rollout_epiplexity_3b.json](data/rollout_epiplexity_3b.json) and
-[data/rollout_epiplexity_1.5b.json](data/rollout_epiplexity_1.5b.json)
+[data/rollout_epiplexity_3b.json](../data/rollout_epiplexity_3b.json) and
+[data/rollout_epiplexity_1.5b.json](../data/rollout_epiplexity_1.5b.json)
 showed something not addressed in RESULTS.md: every loss curve at both
 scales is dominated by chunk-to-chunk noise of the same order of magnitude
 as (or larger than) any net trend.
@@ -182,7 +182,7 @@ zero or positive.
 
 The full per-chunk loss curves are persisted, so this test does not require
 re-running any GPU-bound work. The script
-[recompute_script/recompute_kauc.py](recompute_script/recompute_kauc.py)
+[recompute_script/recompute_kauc.py](../recompute_script/recompute_kauc.py)
 re-derives K_auc from the existing JSON files under eight anchoring
 strategies and computes Spearman ρ against ablation transfer.
 
@@ -255,7 +255,7 @@ has no within-group spread to exploit.
 ### 6.2 Per-dataset K_auc ranking inversion
 
 The script
-[recompute_script/inspect_rankings.py](recompute_script/inspect_rankings.py)
+[recompute_script/inspect_rankings.py](../recompute_script/inspect_rankings.py)
 prints K_auc rankings vs transfer rankings under each anchor. The published-
 anchor rankings reveal the mechanism cleanly:
 
@@ -335,7 +335,7 @@ point on the competence curve.
 Math is the cleanest single piece of evidence for the competence-curve
 interpretation, because it is the dataset on which **every predictor in
 the project fails in the same direction**. Pulling the per-dataset values
-from [RESULTS.md:178](RESULTS.md#L178) (all measured on the 1.5B probe):
+from [RESULTS.md:178](../RESULTS.md#L178) (all measured on the 1.5B probe):
 
 | Dataset | Epi | RV | Fork-H | Roll-Epi | K_auc | Transfer | T-rank |
 |---------|----:|---:|-------:|---------:|------:|---------:|-------:|
@@ -559,7 +559,7 @@ Caveats inherited from the original measurement:
   to the L_final-anchoring effect being studied.
 - **Single-seed measurement.** Whether the rankings would survive a
   different seed is not testable from existing artifacts and would require
-  re-running [measure_rollout_epiplexity.py](measure_rollout_epiplexity.py).
+  re-running [measure_rollout_epiplexity.py](../measure_rollout_epiplexity.py).
 
 ---
 
